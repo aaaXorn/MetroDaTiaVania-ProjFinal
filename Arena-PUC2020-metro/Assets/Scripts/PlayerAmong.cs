@@ -10,25 +10,37 @@ public class PlayerAmong : MonoBehaviour
     PhotonView pView;
 	
 	[SerializeField]
+	PlayerCameraScript PCS;
+	
+	[SerializeField]
 	float inputX, inputY;//valor dos inputs, mudam de acordo com o input horizontal/vertical
 	float speedX = 5, speedY = 5, speedD = 3.5f;//velocidade horizontal/vertical/diagonal base, speedD = 0.7x speed
 	[SerializeField]
 	float movementX, movementY;//velocidade usada
+	
+	public Vector3 cursorDistance;
+	public float cursorMagnitude;
+	public float directionZ;
+	public Vector2 attackDirection;//direçao usada no script PlayerAttacks
     // Start is called before the first frame update
     void Start()
     {
 		sRender = GetComponent<SpriteRenderer>();
         rb2D = GetComponent<Rigidbody2D>();
 		pView = GetComponent<PhotonView>();
+		
+		//Cursor.visible = false;//tira o cursor pra deixas so a crosshair
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (pView.IsMine)
-        {
+        //if (pView.IsMine)
+        //{
+			cursorDistance = PCS.mousePos - transform.position;
 			
-		}
+			directionZ = Mathf.Atan2(cursorDistance.y, cursorDistance.x) * Mathf.Rad2Deg;//Atan2 pega o angulo, Rag2Deg transforma em graus
+		//}
     }
 	
 	void FixedUpdate()

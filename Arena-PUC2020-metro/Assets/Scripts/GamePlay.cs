@@ -12,6 +12,8 @@ public class GamePlay : MonoBehaviour
     public GameObject winner;
     public GameRoom gameRoom;
     public string playerPrefab;
+	
+	public bool cursorOff = false;//pro projeto
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +30,10 @@ public class GamePlay : MonoBehaviour
 
     void StartGame()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+		if(cursorOff == false)
+			Cursor.lockState = CursorLockMode.Locked;
+		else
+			Cursor.lockState = CursorLockMode.None;//deixa mover o cursor
         int indexrespawn = Random.Range(0, respawns.Length);
         if (GameRoutines.gameType == GameRoutines.GameType.Game2D)
         {
