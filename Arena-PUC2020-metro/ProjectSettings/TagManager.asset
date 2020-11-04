@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PlayerList
   - RemotePlayer
+  - Bullet0
   layers:
   - Default
   - TransparentFX
