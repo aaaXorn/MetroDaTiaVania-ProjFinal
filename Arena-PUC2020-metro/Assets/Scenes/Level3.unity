@@ -2988,6 +2988,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1041317547}
   - component: {fileID: 1041317546}
+  - component: {fileID: 1041317548}
   m_Layer: 0
   m_Name: CM vcam1
   m_TagString: Untagged
@@ -3014,7 +3015,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 1444097288}
+  m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 105
     OrthographicSize: 10
@@ -3045,6 +3046,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1041317548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1041317545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 220ef5a9089cd314e8e7dd8a63aca14d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  followPosition: {fileID: 0}
 --- !u!1 &1106919760
 GameObject:
   m_ObjectHideFlags: 3
@@ -3239,13 +3253,13 @@ GameObject:
   - component: {fileID: 1444097287}
   - component: {fileID: 1444097286}
   - component: {fileID: 1444097285}
-  - component: {fileID: 1444097284}
   - component: {fileID: 1444097283}
   - component: {fileID: 1444097282}
   - component: {fileID: 1444097281}
   - component: {fileID: 1444097289}
-  - component: {fileID: 1444097290}
   - component: {fileID: 1444097291}
+  - component: {fileID: 1444097284}
+  - component: {fileID: 1444097290}
   m_Layer: 0
   m_Name: prefabPlayer
   m_TagString: Player
@@ -3320,6 +3334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PCS: {fileID: 1561122851}
+  VCS: {fileID: 1041317548}
   inputX: 0
   inputY: 0
   movementX: 0
@@ -3504,10 +3519,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1561122850}
   - component: {fileID: 1561122849}
+  - component: {fileID: 1561122852}
   - component: {fileID: 1561122848}
   - component: {fileID: 1561122847}
+  - component: {fileID: 1561122853}
   - component: {fileID: 1561122851}
-  - component: {fileID: 1561122852}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3657,6 +3673,19 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1561122853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1561122846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53852ccb18553a44ea3de93a2ca4fb4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptsIgnorar: []
 --- !u!1 &1980288283
 GameObject:
   m_ObjectHideFlags: 0

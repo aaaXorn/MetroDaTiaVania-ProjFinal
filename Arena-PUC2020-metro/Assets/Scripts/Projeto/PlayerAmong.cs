@@ -12,6 +12,8 @@ public class PlayerAmong : MonoBehaviour
 	
 	[SerializeField]
 	PlayerCameraScript PCS;
+	[SerializeField]
+	VCameraScript VCS;
 	
 	[SerializeField]
 	float inputX, inputY;//valor dos inputs, mudam de acordo com o input horizontal/vertical
@@ -31,7 +33,7 @@ public class PlayerAmong : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
 		pView = GetComponent<PhotonView>();
 		
-		//Cursor.visible = false;//tira o cursor pra deixas so a crosshair
+		//Cursor.visible = false;//tira o cursor pra deixar so a crosshair
     }
 
     // Update is called once per frame
@@ -39,6 +41,8 @@ public class PlayerAmong : MonoBehaviour
     {
         //if (pView.IsMine)
         //{
+		VCS.CameraFollow(gameObject);
+			
 		cursorDistance = PCS.mousePos - transform.position;
 		
 		directionZ = Mathf.Atan2(cursorDistance.y, cursorDistance.x) * Mathf.Rad2Deg;//Atan2 pega o angulo, Rag2Deg transforma em graus
