@@ -15,6 +15,13 @@ public class PlayerAmong : MonoBehaviour
 	[SerializeField]
 	VCameraScript VCS;
 	
+	int health;
+	int maxHealth;
+	bool alive = true;
+	public bool task = false;
+	bool mayMove = true;
+	public bool mayAttack = true;
+	
 	[SerializeField]
 	float inputX, inputY;//valor dos inputs, mudam de acordo com o input horizontal/vertical
 	float speedX = 5, speedY = 5, speedD = 3.5f;//velocidade horizontal/vertical/diagonal base, speedD = 0.7x speed
@@ -46,6 +53,22 @@ public class PlayerAmong : MonoBehaviour
 		cursorDistance = PCS.mousePos - transform.position;
 		
 		directionZ = Mathf.Atan2(cursorDistance.y, cursorDistance.x) * Mathf.Rad2Deg;//Atan2 pega o angulo, Rag2Deg transforma em graus
+		
+		if(alive)
+		{
+			if(health<=0)
+			{
+				Death();
+			}
+			else if(health>maxHealth)
+			{
+				health = maxHealth;
+			}
+		}
+		else
+		{
+			
+		}
 		//}
     }
 	
@@ -53,7 +76,10 @@ public class PlayerAmong : MonoBehaviour
 	{
 		//if (pView.IsMine)
         //{
-		Movement();
+		if(mayMove)
+		{
+			Movement();
+		}
 		//}
 	}
 	
@@ -91,5 +117,10 @@ public class PlayerAmong : MonoBehaviour
 		}
 		
 		rb2D.velocity = new Vector2(movementX, movementY);
+	}
+	
+	void Death()
+	{
+		
 	}
 }

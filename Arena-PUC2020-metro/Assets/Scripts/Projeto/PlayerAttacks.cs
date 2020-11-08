@@ -21,12 +21,15 @@ public class PlayerAttacks : MonoBehaviour
     {
 		transform.rotation = Quaternion.Euler(0, 0, PA.directionZ);
 		
-        if(Input.GetMouseButtonDown(0))
+		if(PA.mayAttack)
 		{
-			PA.cursorMagnitude = PA.cursorDistance.magnitude;
-			PA.attackDirection = -1 * PA.cursorDistance / PA.cursorMagnitude;//direçao do tiro, -1 * para corrigir
-			PA.attackDirection.Normalize();//faz o valor ser 1, mas mantem a direçao
-			Shoot();
+			if(Input.GetMouseButtonDown(0))
+			{
+				PA.cursorMagnitude = PA.cursorDistance.magnitude;
+				PA.attackDirection = -1 * PA.cursorDistance / PA.cursorMagnitude;//direçao do tiro, "-1 *" para corrigir
+				PA.attackDirection.Normalize();//faz o valor ser 1, mas mantem a direçao
+				Shoot();
+			}
 		}
     }
 	
