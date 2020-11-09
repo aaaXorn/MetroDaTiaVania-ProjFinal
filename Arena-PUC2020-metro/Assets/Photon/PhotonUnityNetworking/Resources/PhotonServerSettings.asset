@@ -44,6 +44,14 @@ MonoBehaviour:
   - Shoot
   - Shooted
   - VictoryFPS
+  - animMoverTrue
+  - RPC_animMoverTrue
+  - RPC_animMoverFalse
+  - RPC_renderFlipFalse
+  - RPC_renderFlipTrue
+  - RPC_Shoot
+  - RPC_Rotation
+  - RPC_MouseVariables
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

@@ -57,9 +57,7 @@ public class PlayerAmong : MonoBehaviour
         {
 			VCS.CameraFollow(gameObject);
 				
-			cursorDistance = PCS.mousePos - transform.position;
-			
-			directionZ = Mathf.Atan2(cursorDistance.y, cursorDistance.x) * Mathf.Rad2Deg;//Atan2 pega o angulo, Rag2Deg transforma em graus
+			pView.RPC("RPC_MouseVariables", RpcTarget.All);
 		}
 		
 		if(alive)
@@ -97,28 +95,28 @@ public class PlayerAmong : MonoBehaviour
 			
 		if (inputX > 0)//para o personagem nao parecer estar andando para um lado diferente do movimento
 		{
-			sRender.flipX = true;
+			pView.RPC("RPC_renderFlipTrue", RpcTarget.All);
 		}
 		else if (inputX < 0)
 		{
-			sRender.flipX = false;
+			pView.RPC("RPC_renderFlipFalse", RpcTarget.All);
 		}
 		
 		if(inputX != 0 && inputY == 0  || inputX == 0 && inputY != 0)//movimento so pelo X ou so pelo Y
 		{
-			anim.SetBool("Mover", true);
+			pView.RPC("RPC_animMoverTrue", RpcTarget.All);
 			movementX = inputX * speedX;
 			movementY = inputY * speedY;
 		}
 		else if (inputX != 0 && inputY != 0)//movimento na diagonal
 		{
-			anim.SetBool("Mover", true);
+			pView.RPC("RPC_animMoverTrue", RpcTarget.All);
 			movementX = inputX * speedD;
 			movementY = inputY * speedD;
 		}
 		else if (inputX == 0 && inputY == 0)//parado
 		{
-			anim.SetBool("Mover", false);
+			pView.RPC("RPC_animMoverFalse", RpcTarget.All);
 			movementX = 0;
 			movementY = 0;
 		}
@@ -130,4 +128,36 @@ public class PlayerAmong : MonoBehaviour
 	{
 		
 	}
+	
+	//funcoes de RPC pro online funcionar
+	[PunRPC]
+	void RPC_MouseVariables()
+	{
+		cursorDistance = PCS.mousePos - transform.position;
+			
+		directionZ = Mathf.Atan2(cursorDistance.y, cursorDistance.x) * Mathf.Rad2Deg;
+		//Atan2 pega o angulo, Rag2Deg transforma em graus
+	}
+	
+	//animacao
+		[PunRPC]
+		void RPC_renderFlipTrue()
+		{
+			sRender.flipX = true;
+		}
+		[PunRPC]
+		void RPC_renderFlipFalse()
+		{
+			sRender.flipX = false;
+		}
+		[PunRPC]
+		void RPC_animMoverTrue()
+		{
+			anim.SetBool("Mover", true);
+		}
+		[PunRPC]
+		void RPC_animMoverFalse()
+		{
+			anim.SetBool("Mover", false);
+		}
 }
