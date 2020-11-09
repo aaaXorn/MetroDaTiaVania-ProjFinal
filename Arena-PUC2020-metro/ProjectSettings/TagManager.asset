@@ -7,6 +7,7 @@ TagManager:
   - PlayerList
   - RemotePlayer
   - Bullet0
+  - VirtualCamera
   layers:
   - Default
   - TransparentFX

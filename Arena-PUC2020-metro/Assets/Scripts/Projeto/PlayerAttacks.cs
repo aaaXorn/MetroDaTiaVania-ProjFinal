@@ -1,11 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class PlayerAttacks : MonoBehaviour
 {
+	PhotonView pView;
+	
 	[SerializeField]
 	GameObject bulletPrefab, bullet;
+	[SerializeField]
+	GameObject RoboPlayer;
 	[SerializeField]
 	PlayerAmong PA;
 	
@@ -13,25 +18,32 @@ public class PlayerAttacks : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        pView = GetComponent<PhotonView>();
+		
+		RoboPlayer = transform.parent.gameObject;
+		PA = RoboPlayer.GetComponent<PlayerAmong>();
     }
 
     // Update is called once per frame
     void Update()
     {
-		transform.rotation = Quaternion.Euler(0, 0, PA.directionZ);
-		
-		if(PA.mayAttack)
+		if (pView.IsMine)
 		{
-			if(Input.GetMouseButtonDown(0))
+			transform.rotation = Quaternion.Euler(0, 0, PA.directionZ);
+			
+			if(PA.mayAttack)
 			{
-				PA.cursorMagnitude = PA.cursorDistance.magnitude;
-				PA.attackDirection = -1 * PA.cursorDistance / PA.cursorMagnitude;//direçao do tiro, "-1 *" para corrigir
-				PA.attackDirection.Normalize();//faz o valor ser 1, mas mantem a direçao
-				Shoot();
+				if(Input.GetMouseButtonDown(0))
+				{
+					PA.cursorMagnitude = PA.cursorDistance.magnitude;
+					PA.attackDirection = -1 * PA.cursorDistance / PA.cursorMagnitude;//direçao do tiro, "-1 *" para corrigir
+					PA.attackDirection.Normalize();//faz o valor ser 1, mas mantem a direçao
+					Shoot();
+				}
 			}
 		}
     }
+
 	
 	void Shoot()
 	{

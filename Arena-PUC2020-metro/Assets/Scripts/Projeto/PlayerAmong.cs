@@ -11,6 +11,8 @@ public class PlayerAmong : MonoBehaviour
     PhotonView pView;
 	
 	[SerializeField]
+	GameObject MainCamera, VirtualCamera;
+	[SerializeField]
 	PlayerCameraScript PCS;
 	[SerializeField]
 	VCameraScript VCS;
@@ -40,19 +42,25 @@ public class PlayerAmong : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
 		pView = GetComponent<PhotonView>();
 		
+		MainCamera = GameObject.FindWithTag("MainCamera");
+		VirtualCamera = GameObject.FindWithTag("VirtualCamera");
+		PCS = MainCamera.GetComponent<PlayerCameraScript>();
+		VCS = VirtualCamera.GetComponent<VCameraScript>();
+		
 		//Cursor.visible = false;//tira o cursor pra deixar so a crosshair
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if (pView.IsMine)
-        //{
-		VCS.CameraFollow(gameObject);
+        if (pView.IsMine)
+        {
+			VCS.CameraFollow(gameObject);
+				
+			cursorDistance = PCS.mousePos - transform.position;
 			
-		cursorDistance = PCS.mousePos - transform.position;
-		
-		directionZ = Mathf.Atan2(cursorDistance.y, cursorDistance.x) * Mathf.Rad2Deg;//Atan2 pega o angulo, Rag2Deg transforma em graus
+			directionZ = Mathf.Atan2(cursorDistance.y, cursorDistance.x) * Mathf.Rad2Deg;//Atan2 pega o angulo, Rag2Deg transforma em graus
+		}
 		
 		if(alive)
 		{
@@ -69,18 +77,17 @@ public class PlayerAmong : MonoBehaviour
 		{
 			
 		}
-		//}
     }
 	
 	void FixedUpdate()
 	{
-		//if (pView.IsMine)
-        //{
-		if(mayMove)
-		{
-			Movement();
+		if (pView.IsMine)
+        {
+			if(mayMove)
+			{
+				Movement();
+			}
 		}
-		//}
 	}
 	
 	void Movement()
