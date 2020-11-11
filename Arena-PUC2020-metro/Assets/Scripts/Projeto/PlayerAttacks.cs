@@ -14,6 +14,8 @@ public class PlayerAttacks : MonoBehaviour
 	[SerializeField]
 	PlayerAmong PA;
 	
+	float attackTimer = 0.1f;
+	
 	float bulletSpeed = 10;
     // Start is called before the first frame update
     void Start()
@@ -35,7 +37,22 @@ public class PlayerAttacks : MonoBehaviour
 			{
 				if(Input.GetMouseButtonDown(0))
 				{
-					pView.RPC("RPC_Shoot", RpcTarget.All);
+					pView.RPC("RPC_Aim", RpcTarget.All);
+					PA.shoot = true;
+				}
+				
+				if(PA.shoot)
+				{
+					if(attackTimer<0)
+					{
+						pView.RPC("RPC_Shoot", RpcTarget.All);
+						attackTimer = 0.1f;
+						PA.shoot = false;
+					}
+					else
+					{
+						attackTimer -= Time.deltaTime;
+					}
 				}
 			}
 		}
@@ -49,13 +66,19 @@ public class PlayerAttacks : MonoBehaviour
 	}
 	
 	[PunRPC]
-	void RPC_Shoot()
+	void RPC_Aim()
 	{
 		PA.cursorMagnitude = PA.cursorDistance.magnitude;
 		PA.attackDirection = -1 * PA.cursorDistance / PA.cursorMagnitude;//direçao do tiro, "-1 *" para corrigir
 		PA.attackDirection.Normalize();//faz o valor ser 1, mas mantem a direçao
-		bullet = Instantiate(bulletPrefab, transform.position, Quaternion.Euler(0, 0, PA.directionZ));
-		bullet.transform.Translate(-3.1f, 0, 0);//para o tiro não spawnar dentro do player, - pra ir pro lado certo
+	}
+	
+	[PunRPC]
+	void RPC_Shoot()
+	{
+		bullet = PhotonNetwork.Instantiate("bullet0", transform.position, Quaternion.Euler(0, 0, PA.directionZ));
+		//bullet = Instantiate(bulletPrefab, transform.position, Quaternion.Euler(0, 0, PA.directionZ));//ver antiga
+		bullet.transform.Translate(-3.1f, 0, 0);//para o tiro não spawnar dentro do player, negativo pra ir pro lado certo
 		bullet.GetComponent<Rigidbody2D>().velocity = PA.attackDirection * bulletSpeed;
 	}
 }

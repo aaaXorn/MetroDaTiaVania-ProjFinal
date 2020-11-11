@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAmong : MonoBehaviour
+public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 {
 	Animator anim;
 	SpriteRenderer sRender;
@@ -30,6 +30,7 @@ public class PlayerAmong : MonoBehaviour
 	[SerializeField]
 	float movementX, movementY;//velocidade usada
 	
+	public bool shoot = false;
 	public Vector3 cursorDistance;
 	public float cursorMagnitude;
 	public float directionZ;
@@ -58,6 +59,10 @@ public class PlayerAmong : MonoBehaviour
 			VCS.CameraFollow(gameObject);
 				
 			pView.RPC("RPC_MouseVariables", RpcTarget.All);
+			/*cursorDistance = PCS.mousePos - transform.position;
+			
+			directionZ = Mathf.Atan2(cursorDistance.y, cursorDistance.x) * Mathf.Rad2Deg;
+			//Atan2 pega o angulo, Rag2Deg transforma em graus*/
 		}
 		
 		if(alive)
@@ -87,6 +92,28 @@ public class PlayerAmong : MonoBehaviour
 			}
 		}
 	}
+	
+	#region IPunObservable implementation
+	
+	public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+	{
+		if(stream.IsWriting && pView.IsMine)
+		{
+			stream.SendNext(health);
+			stream.SendNext(shoot);
+			stream.SendNext(directionZ);
+			stream.SendNext(cursorDistance);
+		}
+		else if(!stream.IsWriting && !pView.IsMine)
+		{
+			health = (int)stream.ReceiveNext();
+			shoot = (bool)stream.ReceiveNext();
+			directionZ = (float)stream.ReceiveNext();
+			cursorDistance = (Vector3)stream.ReceiveNext();
+		}
+	}
+	
+	#endregion
 	
 	void Movement()
 	{

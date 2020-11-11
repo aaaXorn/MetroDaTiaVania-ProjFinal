@@ -52,6 +52,7 @@ MonoBehaviour:
   - RPC_Shoot
   - RPC_Rotation
   - RPC_MouseVariables
+  - RPC_Aim
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
