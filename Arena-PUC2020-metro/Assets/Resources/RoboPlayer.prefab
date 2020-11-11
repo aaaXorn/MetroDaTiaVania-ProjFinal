@@ -66,12 +66,13 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  observableSearch: 2
-  Synchronization: 0
+  observableSearch: 0
+  Synchronization: 1
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 9084973258266614905}
   - {fileID: 3940656823879419764}
+  - {fileID: 6381860983687510657}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -260,10 +261,13 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   observableSearch: 0
-  Synchronization: 3
+  Synchronization: 1
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 6381860985050223387}
+  - {fileID: 6381860985050223384}
+  - {fileID: 6381860985050223376}
+  - {fileID: 6381860985050223389}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -341,6 +345,7 @@ MonoBehaviour:
   inputY: 0
   movementX: 0
   movementY: 0
+  shoot: 0
   cursorDistance: {x: 0, y: 0, z: 0}
   cursorMagnitude: 0
   directionZ: 0

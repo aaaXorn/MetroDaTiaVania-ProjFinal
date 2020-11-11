@@ -1,4 +1,5 @@
-﻿using Photon.Pun;
+﻿using Photon;
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -58,11 +59,8 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
         {
 			VCS.CameraFollow(gameObject);
 				
-			pView.RPC("RPC_MouseVariables", RpcTarget.All);
-			/*cursorDistance = PCS.mousePos - transform.position;
-			
-			directionZ = Mathf.Atan2(cursorDistance.y, cursorDistance.x) * Mathf.Rad2Deg;
-			//Atan2 pega o angulo, Rag2Deg transforma em graus*/
+			//pView.RPC("RPC_MouseVariables", RpcTarget.All);
+			MouseVariables();
 		}
 		
 		if(alive)
@@ -103,13 +101,15 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 			stream.SendNext(shoot);
 			stream.SendNext(directionZ);
 			stream.SendNext(cursorDistance);
+			stream.SendNext(attackDirection);
 		}
-		else if(!stream.IsWriting && !pView.IsMine)
+		else
 		{
 			health = (int)stream.ReceiveNext();
 			shoot = (bool)stream.ReceiveNext();
 			directionZ = (float)stream.ReceiveNext();
 			cursorDistance = (Vector3)stream.ReceiveNext();
+			attackDirection = (Vector2)stream.ReceiveNext();
 		}
 	}
 	
@@ -156,15 +156,15 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 		
 	}
 	
-	//funcoes de RPC pro online funcionar
-	[PunRPC]
-	void RPC_MouseVariables()
+	void MouseVariables()
 	{
 		cursorDistance = PCS.mousePos - transform.position;
 			
 		directionZ = Mathf.Atan2(cursorDistance.y, cursorDistance.x) * Mathf.Rad2Deg;
 		//Atan2 pega o angulo, Rag2Deg transforma em graus
 	}
+	
+	//funcoes de RPC pro online funcionar
 	
 	//animacao
 		[PunRPC]

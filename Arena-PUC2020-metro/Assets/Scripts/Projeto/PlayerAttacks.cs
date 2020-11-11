@@ -37,7 +37,7 @@ public class PlayerAttacks : MonoBehaviour
 			{
 				if(Input.GetMouseButtonDown(0))
 				{
-					pView.RPC("RPC_Aim", RpcTarget.All);
+					Aim();
 					PA.shoot = true;
 				}
 				
@@ -58,19 +58,18 @@ public class PlayerAttacks : MonoBehaviour
 		}
     }
 
+	void Aim()
+	{
+		PA.cursorMagnitude = PA.cursorDistance.magnitude;
+		PA.attackDirection = -1 * PA.cursorDistance / PA.cursorMagnitude;//direçao do tiro, "-1 *" para corrigir
+		PA.attackDirection.Normalize();//faz o valor ser 1, mas mantem a direçao
+	}
+
 	//funcoes do RPC
 	[PunRPC]
 	void RPC_Rotation()
 	{
 		transform.rotation = Quaternion.Euler(0, 0, PA.directionZ);
-	}
-	
-	[PunRPC]
-	void RPC_Aim()
-	{
-		PA.cursorMagnitude = PA.cursorDistance.magnitude;
-		PA.attackDirection = -1 * PA.cursorDistance / PA.cursorMagnitude;//direçao do tiro, "-1 *" para corrigir
-		PA.attackDirection.Normalize();//faz o valor ser 1, mas mantem a direçao
 	}
 	
 	[PunRPC]
