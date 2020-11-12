@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
-{
+{//, IPunObservable para passar variaveis com o PhotonView
 	Animator anim;
 	SpriteRenderer sRender;
 	Rigidbody2D rb2D;
@@ -32,10 +32,10 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 	float movementX, movementY;//velocidade usada
 	
 	public bool shoot = false;
-	public Vector3 cursorDistance;
-	public float cursorMagnitude;
-	public float directionZ;
-	public Vector2 attackDirection;//direçao usada no script PlayerAttacks
+	public Vector3 cursorDistance;//distancia entre o player e a posicao do cursor
+	public float cursorMagnitude;//tamanho do vetor cursorDistance, usado em calculos
+	public float directionZ;//direcao da reta entre o player e a posicao do cursor
+	public Vector2 attackDirection;//direcao que o ataque ganha velocidade
     // Start is called before the first frame update
     void Start()
     {
@@ -44,7 +44,7 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
         rb2D = GetComponent<Rigidbody2D>();
 		pView = GetComponent<PhotonView>();
 		
-		MainCamera = GameObject.FindWithTag("MainCamera");
+		MainCamera = GameObject.FindWithTag("MainCamera");//necessario ja que o jogador e criado com Instantiate
 		VirtualCamera = GameObject.FindWithTag("VirtualCamera");
 		PCS = MainCamera.GetComponent<PlayerCameraScript>();
 		VCS = VirtualCamera.GetComponent<VCameraScript>();
@@ -58,8 +58,7 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
         if (pView.IsMine)
         {
 			VCS.CameraFollow(gameObject);
-				
-			//pView.RPC("RPC_MouseVariables", RpcTarget.All);
+			
 			MouseVariables();
 		}
 		
@@ -95,7 +94,7 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 	
 	public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
 	{
-		if(stream.IsWriting && pView.IsMine)
+		if(stream.IsWriting && pView.IsMine)//manda as variaveis pros outros jogadores
 		{
 			stream.SendNext(health);
 			stream.SendNext(shoot);
@@ -103,7 +102,7 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 			stream.SendNext(cursorDistance);
 			stream.SendNext(attackDirection);
 		}
-		else
+		else//recebe as variaveis
 		{
 			health = (int)stream.ReceiveNext();
 			shoot = (bool)stream.ReceiveNext();

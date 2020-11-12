@@ -22,7 +22,7 @@ public class PlayerAttacks : MonoBehaviour
     {
         pView = GetComponent<PhotonView>();
 		
-		RoboPlayer = transform.parent.gameObject;
+		RoboPlayer = transform.parent.gameObject;//faz a variavel RoboPlayer ser o objeto parente de attackDirection
 		PA = RoboPlayer.GetComponent<PlayerAmong>();
     }
 
@@ -58,7 +58,7 @@ public class PlayerAttacks : MonoBehaviour
 		}
     }
 
-	void Aim()
+	void Aim()//direcao do ataque com base na posicao do cursor
 	{
 		PA.cursorMagnitude = PA.cursorDistance.magnitude;
 		PA.attackDirection = -1 * PA.cursorDistance / PA.cursorMagnitude;//direçao do tiro, "-1 *" para corrigir
@@ -67,13 +67,13 @@ public class PlayerAttacks : MonoBehaviour
 
 	//funcoes do RPC
 	[PunRPC]
-	void RPC_Rotation()
+	void RPC_Rotation()//rotaciona o objeto attackDirection para ele apontar pro cursor
 	{
 		transform.rotation = Quaternion.Euler(0, 0, PA.directionZ);
 	}
 	
 	[PunRPC]
-	void RPC_Shoot()
+	void RPC_Shoot()//atira um prefab na direcao do cursor
 	{
 		bullet = PhotonNetwork.Instantiate("bullet0", transform.position, Quaternion.Euler(0, 0, PA.directionZ));
 		//bullet = Instantiate(bulletPrefab, transform.position, Quaternion.Euler(0, 0, PA.directionZ));//ver antiga
