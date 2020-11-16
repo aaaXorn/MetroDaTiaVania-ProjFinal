@@ -37,7 +37,9 @@ public class GamePlay : MonoBehaviour
         int indexrespawn = Random.Range(0, respawns.Length);
         if (GameRoutines.gameType == GameRoutines.GameType.Game2D)
         {
-            PhotonNetwork.Instantiate(playerPrefab, respawns[indexrespawn].transform.position, respawns[indexrespawn].transform.rotation, 0);
+            PhotonNetwork.Instantiate(playerPrefab, respawns[indexrespawn].transform.position + 
+									  new Vector3(Random.Range(-8, 7), Random.Range(-6, 5), 0), 
+									  respawns[indexrespawn].transform.rotation, 0);
 
             return;
         }
