@@ -75,8 +75,9 @@ public class PlayerAttacks : MonoBehaviour
 	[PunRPC]
 	void RPC_Shoot()//atira um prefab na direcao do cursor
 	{
-		bullet = PhotonNetwork.Instantiate("bullet0", transform.position, Quaternion.Euler(0, 0, PA.directionZ));
-		//bullet = Instantiate(bulletPrefab, transform.position, Quaternion.Euler(0, 0, PA.directionZ));//ver antiga
+		//bullet = PhotonNetwork.Instantiate("bullet0", transform.position, Quaternion.Euler(0, 0, PA.directionZ));
+		//ver com PhotonNetwork, causou bugs entao nao esta sendo usada
+		bullet = Instantiate(bulletPrefab, transform.position, Quaternion.Euler(0, 0, PA.directionZ));
 		bullet.transform.Translate(-3.1f, 0, 0);//para o tiro não spawnar dentro do player, negativo pra ir pro lado certo
 		bullet.GetComponent<Rigidbody2D>().velocity = PA.attackDirection * bulletSpeed;
 	}
