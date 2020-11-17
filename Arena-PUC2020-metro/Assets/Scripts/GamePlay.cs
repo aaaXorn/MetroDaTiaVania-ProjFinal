@@ -35,10 +35,10 @@ public class GamePlay : MonoBehaviour
 		else
 			Cursor.lockState = CursorLockMode.None;//deixa mover o cursor
         int indexrespawn = Random.Range(0, respawns.Length);
-        if (GameRoutines.gameType == GameRoutines.GameType.Game2D)
+        if (GameRoutines.gameType == GameRoutines.GameType.Game2D)//spawn jogo 2D
         {
             PhotonNetwork.Instantiate(playerPrefab, respawns[indexrespawn].transform.position + 
-									  new Vector3(Random.Range(-8, 7), Random.Range(-6, 5), 0), 
+									  new Vector3(Random.Range(-8, 8), Random.Range(-5, 7), 0), 
 									  respawns[indexrespawn].transform.rotation, 0);
 
             return;
