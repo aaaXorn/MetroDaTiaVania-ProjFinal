@@ -25,6 +25,5 @@ public class VCameraScript : MonoBehaviour
 		followPosition = player.transform;
 		vCamera.LookAt = followPosition;
 		vCamera.Follow = followPosition;
-		
 	}
 }

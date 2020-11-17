@@ -12,16 +12,17 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
     PhotonView pView;
 	
 	[SerializeField]
-	GameObject MainCamera, VirtualCamera;
+	GameObject MainCamera, VirtualCamera, Tasks;
 	[SerializeField]
 	PlayerCameraScript PCS;
 	[SerializeField]
 	VCameraScript VCS;
+	[SerializeField]
+	TasksScript TS;
 	
 	int health;
 	int maxHealth;
 	bool alive = true;
-	public bool task = false;
 	bool mayMove = true;
 	public bool mayAttack = true;
 	
@@ -44,10 +45,18 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
         rb2D = GetComponent<Rigidbody2D>();
 		pView = GetComponent<PhotonView>();
 		
-		MainCamera = GameObject.FindWithTag("MainCamera");//necessario ja que o jogador e criado com Instantiate
-		VirtualCamera = GameObject.FindWithTag("VirtualCamera");
-		PCS = MainCamera.GetComponent<PlayerCameraScript>();
-		VCS = VirtualCamera.GetComponent<VCameraScript>();
+		//if(pView.IsMine)//com comentarios pra testar as tasks!!!!!
+		//{
+			MainCamera = GameObject.FindWithTag("MainCamera");//necessario ja que o jogador e criado com Instantiate
+			VirtualCamera = GameObject.FindWithTag("VirtualCamera");
+			Tasks = GameObject.FindWithTag("Tasks");
+			PCS = MainCamera.GetComponent<PlayerCameraScript>();
+			VCS = VirtualCamera.GetComponent<VCameraScript>();
+			TS = Tasks.GetComponent<TasksScript>();
+			
+			TS.Player = gameObject;
+			TS.PA = TS.Player.GetComponent<PlayerAmong>();
+		//}
 		
 		//Cursor.visible = false;//tira o cursor pra deixar so a crosshair
     }

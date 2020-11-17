@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4656383808610465338}
   - component: {fileID: 9084973258266614905}
   - component: {fileID: 3940656823879419764}
+  - component: {fileID: 1880309786574947822}
   m_Layer: 0
   m_Name: attackDirection
   m_TagString: Untagged
@@ -107,6 +108,25 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters: []
   m_SynchronizeLayers: []
+--- !u!95 &1880309786574947822
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6381860983687510671}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6381860985050223385
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,8 +357,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainCamera: {fileID: 0}
   VirtualCamera: {fileID: 0}
+  Tasks: {fileID: 0}
   PCS: {fileID: 0}
   VCS: {fileID: 0}
+  TS: {fileID: 0}
   task: 0
   mayAttack: 1
   inputX: 0

@@ -8,6 +8,7 @@ TagManager:
   - RemotePlayer
   - Bullet0
   - VirtualCamera
+  - Tasks
   layers:
   - Default
   - TransparentFX
