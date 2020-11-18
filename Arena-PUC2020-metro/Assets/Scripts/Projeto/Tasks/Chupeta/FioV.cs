@@ -2,22 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PointerScript2 : MonoBehaviour
+public class FioV : MonoBehaviour
 {
-    Animator anim;
+    [SerializeField]
+	TaskChupeta1 TC1;
 	
-	[SerializeField]
-	TaskGas2 TG2;
+	SpriteRenderer sRender;
 	
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator>();
+        sRender = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        anim.SetInteger("Fuel", 3-TG2.timerCount);
+        if(TC1.timerStartV)
+			sRender.enabled = true;
     }
 }

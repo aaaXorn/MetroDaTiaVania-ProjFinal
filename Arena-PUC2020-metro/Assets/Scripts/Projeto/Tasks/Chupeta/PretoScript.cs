@@ -2,22 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PointerScript2 : MonoBehaviour
+public class PretoScript : MonoBehaviour
 {
-    Animator anim;
-	
-	[SerializeField]
-	TaskGas2 TG2;
+    [SerializeField]
+	TaskChupeta1 TC1;
 	
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        anim.SetInteger("Fuel", 3-TG2.timerCount);
+        if(TC1.timerStartP)
+			Destroy(gameObject);
     }
 }

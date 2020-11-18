@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PointerScript2 : MonoBehaviour
+public class Raio1Script : MonoBehaviour
 {
-    Animator anim;
+	Animator anim;
 	
 	[SerializeField]
-	TaskGas2 TG2;
-	
+	TaskChupeta1 TC1;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +17,7 @@ public class PointerScript2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        anim.SetInteger("Fuel", 3-TG2.timerCount);
+        if(TC1.timerStartV && TC1.timerStartP)
+			anim.SetBool("On", true);
     }
 }

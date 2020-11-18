@@ -12,7 +12,7 @@ public class TasksScript : MonoBehaviour
 	public PlayerAmong PA;
 	
 	[SerializeField]
-	GameObject TaskUsed, TaskHanoi, TaskGas1, TaskGas2;
+	GameObject TaskUsed, TaskHanoi, TaskGas1, TaskGas2, TaskChupeta1;
 	
 	[SerializeField]
 	bool taskCreated = false;
@@ -20,9 +20,9 @@ public class TasksScript : MonoBehaviour
 	public bool task = false;
 	public string currentTask = "none";
 	
-	public bool taskGas2 = false;//pra nao dar pra fazer a Gas2 antes da Gas1
+	public bool taskGas2 = false, taskChupeta2 = false;//pra nao dar pra fazer a Gas2 antes da Gas1
 	
-	bool tHanoiDone, tGas1Done, tGas2Done;//pras tasks feitas nao poderem ser feitas 2 vezes
+	public bool tHanoiDone, tGas1Done, tGas2Done, tChu1Done;//pras tasks feitas nao poderem ser feitas 2 vezes
     // Start is called before the first frame update
     void Start()
     {
@@ -58,7 +58,6 @@ public class TasksScript : MonoBehaviour
 						{
 							TaskUsed = Instantiate(TaskGas1, transform.position, Quaternion.identity);
 							TaskUsed.transform.parent = gameObject.transform;
-							tGas1Done = true;
 							taskCreated = true;
 						}
 						else
@@ -70,11 +69,23 @@ public class TasksScript : MonoBehaviour
 						{
 							TaskUsed = Instantiate(TaskGas2, transform.position, Quaternion.identity);
 							TaskUsed.transform.parent = gameObject.transform;
-							tGas2Done = true;
 							taskCreated = true;
 						}
 						else
 							task = false;
+						break;
+						
+						case "chupeta1":
+						if(tChu1Done == false)
+						{
+							TaskUsed = Instantiate(TaskChupeta1, transform.position, Quaternion.identity);
+							TaskUsed.transform.parent = gameObject.transform;
+							taskCreated = true;
+						}
+						break;
+						
+						case "chupeta2":
+						
 						break;
 						
 						default:

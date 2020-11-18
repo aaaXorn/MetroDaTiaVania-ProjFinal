@@ -1,12 +1,48 @@
 fileFormatVersion: 2
 guid: b4316360a8a71e340879c300a793df35
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 2523035904049985795
+    second: Task_Chupeta2_0
+  - first:
+      213: -3551760185074840578
+    second: Task_Chupeta2_1
+  - first:
+      213: 4912306516115004745
+    second: Task_Chupeta2_2
+  - first:
+      213: -5891297138436948357
+    second: Task_Chupeta2_3
+  - first:
+      213: -9073124320251963144
+    second: Task_Chupeta2_4
+  - first:
+      213: 7203038303185860399
+    second: Task_Chupeta2_5
+  - first:
+      213: -4558162516195774202
+    second: Task_Chupeta2_6
+  - first:
+      213: 1371670349556813256
+    second: Task_Chupeta2_7
+  - first:
+      213: 4113777446710689232
+    second: Task_Chupeta2_8
+  - first:
+      213: 9068077165957132191
+    second: Task_Chupeta2_9
+  - first:
+      213: -5508337794038003354
+    second: Task_Chupeta2_10
+  - first:
+      213: 214131127901790856
+    second: Task_Chupeta2_11
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -34,24 +70,24 @@ TextureImporter:
     filterMode: -1
     aniso: 2
     mipBias: -100
-    wrapU: 0
-    wrapV: 0
+    wrapU: 1
+    wrapV: 1
     wrapW: 0
-  nPOTScale: 1
+  nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 150
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   singleChannelComponent: 0
   maxTextureSizeSet: 0
@@ -121,11 +157,263 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Task_Chupeta2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 4284
+        height: 3584
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 309b47089cf930320800000000000000
+      internalID: 2523035904049985795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Task_Chupeta2_1
+      rect:
+        serializedVersion: 2
+        x: 4732
+        y: 3052
+        width: 633
+        height: 266
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efb0d310eec95bec0800000000000000
+      internalID: -3551760185074840578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Task_Chupeta2_2
+      rect:
+        serializedVersion: 2
+        x: 5756
+        y: 2832
+        width: 659
+        height: 261
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94d1fd8ffb40c2440800000000000000
+      internalID: 4912306516115004745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Task_Chupeta2_3
+      rect:
+        serializedVersion: 2
+        x: 4884
+        y: 738
+        width: 330
+        height: 558
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7eb03d4778ed3ea0800000000000000
+      internalID: -5891297138436948357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Task_Chupeta2_4
+      rect:
+        serializedVersion: 2
+        x: 5359
+        y: 738
+        width: 330
+        height: 558
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f89c609089c51280800000000000000
+      internalID: -9073124320251963144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Task_Chupeta2_5
+      rect:
+        serializedVersion: 2
+        x: 5859
+        y: 738
+        width: 331
+        height: 558
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f27fce46c2556f360800000000000000
+      internalID: 7203038303185860399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Task_Chupeta2_6
+      rect:
+        serializedVersion: 2
+        x: 6330
+        y: 738
+        width: 331
+        height: 558
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60176a977572eb0c0800000000000000
+      internalID: -4558162516195774202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Task_Chupeta2_7
+      rect:
+        serializedVersion: 2
+        x: 6817
+        y: 738
+        width: 330
+        height: 558
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8cd054e5ae6290310800000000000000
+      internalID: 1371670349556813256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Task_Chupeta2_8
+      rect:
+        serializedVersion: 2
+        x: 5022
+        y: 29
+        width: 329
+        height: 559
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dd3434cac2171930800000000000000
+      internalID: 4113777446710689232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Task_Chupeta2_9
+      rect:
+        serializedVersion: 2
+        x: 5547
+        y: 0
+        width: 330
+        height: 559
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9fa4b0432848dd70800000000000000
+      internalID: 9068077165957132191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Task_Chupeta2_10
+      rect:
+        serializedVersion: 2
+        x: 6122
+        y: 29
+        width: 330
+        height: 559
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6698183f5f37e83b0800000000000000
+      internalID: -5508337794038003354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Task_Chupeta2_11
+      rect:
+        serializedVersion: 2
+        x: 6642
+        y: 0
+        width: 330
+        height: 559
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 882a0f5502fb8f200800000000000000
+      internalID: 214131127901790856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 37f8af9a12512954289327182e4d0f17
     internalID: 0
     vertices: []
     indices: 

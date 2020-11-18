@@ -19,9 +19,6 @@ public class TaskGas2 : MonoBehaviour
 	
 	public bool Part2 = false;
 	public bool moveGas = false;
-	
-	[SerializeField]
-	bool taskEnd = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,8 +46,8 @@ public class TaskGas2 : MonoBehaviour
 			
 			if(timerCount>3)
 			{
-				taskEnd = true;
 				timerStart = false;
+				TS.tGas2Done = true;
 				TS.TaskMoney();
 				TS.task = false;
 			}
