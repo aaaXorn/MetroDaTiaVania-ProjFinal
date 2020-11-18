@@ -26,6 +26,8 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 	bool mayMove = true;
 	public bool mayAttack = true;
 	
+	public int money = 0;
+	
 	[SerializeField]
 	float inputX, inputY;//valor dos inputs, mudam de acordo com o input horizontal/vertical
 	float speedX = 5, speedY = 5, speedD = 3.5f;//velocidade horizontal/vertical/diagonal base, speedD = 0.7x speed
@@ -195,4 +197,19 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 		{
 			anim.SetBool("Mover", false);
 		}
+		
+	//funcoes de colisao e trigger
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		if (collision.gameObject.tag == "TG1")
+		{
+			TS.task = true;
+			TS.currentTask = "gas1";
+		}
+		if (collision.gameObject.tag == "TG2")
+		{
+			TS.task = true;
+			TS.currentTask = "gas2";
+		}
+	}
 }

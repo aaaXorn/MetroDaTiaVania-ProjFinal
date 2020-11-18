@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class TaskGas1 : MonoBehaviour
+public class TaskGas2 : MonoBehaviour
 {
 	PhotonView pView;
-	
-	[SerializeField]
-	Manguera Mng;
 	
 	[SerializeField]
 	GameObject Tasks;
@@ -19,6 +16,9 @@ public class TaskGas1 : MonoBehaviour
 	
 	float timer = 0;
 	public int timerCount = 0;
+	
+	public bool Part2 = false;
+	public bool moveGas = false;
 	
 	[SerializeField]
 	bool taskEnd = false;
@@ -51,19 +51,23 @@ public class TaskGas1 : MonoBehaviour
 			{
 				taskEnd = true;
 				timerStart = false;
-				TS.taskGas2 = true;
 				TS.TaskMoney();
 				TS.task = false;
 			}
 		}
     }
 	
-	public void MangueraPart2()
+	public void Gas2Part1()
 	{
-		if(Mng.Part2 == true)
+		Part2 = true;
+	}
+		
+	public void Gas2Part2()
+	{
+		if(Part2 == true)
 		{
 			timerStart = true;
-			Mng.AnimChange();
+			moveGas = true;
 		}
 	}
 }

@@ -9,6 +9,8 @@ TagManager:
   - Bullet0
   - VirtualCamera
   - Tasks
+  - TG1
+  - TG2
   layers:
   - Default
   - TransparentFX

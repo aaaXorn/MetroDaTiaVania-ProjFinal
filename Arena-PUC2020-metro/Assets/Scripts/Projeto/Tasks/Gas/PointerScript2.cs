@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
-public class Manguera : MonoBehaviour
+public class PointerScript2 : MonoBehaviour
 {
-	Animator anim;
+    Animator anim;
 	
-	public bool Part2 = false;
+	[SerializeField]
+	TaskGas2 TG2;
+	
     // Start is called before the first frame update
     void Start()
     {
@@ -17,16 +18,6 @@ public class Manguera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        anim.SetInteger("Fuel", TG2.timerCount);
     }
-	
-	public void MangueraPart1()//falta uma notificacao
-	{
-		Part2 = true;
-	}
-	
-	public void AnimChange()
-	{
-		anim.SetBool("Start", true);
-	}
 }

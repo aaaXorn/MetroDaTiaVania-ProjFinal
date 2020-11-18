@@ -12,7 +12,7 @@ public class TasksScript : MonoBehaviour
 	public PlayerAmong PA;
 	
 	[SerializeField]
-	GameObject TaskUsed, TaskHanoi, TaskGas1;
+	GameObject TaskUsed, TaskHanoi, TaskGas1, TaskGas2;
 	
 	[SerializeField]
 	bool taskCreated = false;
@@ -20,8 +20,9 @@ public class TasksScript : MonoBehaviour
 	public bool task = false;
 	public string currentTask = "none";
 	
-	public int taskPoints = 0;
+	public bool taskGas2 = false;//pra nao dar pra fazer a Gas2 antes da Gas1
 	
+	bool tHanoiDone, tGas1Done, tGas2Done;//pras tasks feitas nao poderem ser feitas 2 vezes
     // Start is called before the first frame update
     void Start()
     {
@@ -40,18 +41,44 @@ public class TasksScript : MonoBehaviour
 					switch(currentTask)
 					{
 						case "hanoi":
-						TaskUsed = Instantiate(TaskHanoi, transform.position, Quaternion.identity);
-						TaskUsed.transform.parent = gameObject.transform;//pra virar um child gameObject e se mover com o objeto original
-						taskCreated = true;
+						if(tHanoiDone == false)
+						{
+							TaskUsed = Instantiate(TaskHanoi, transform.position, Quaternion.identity);
+							TaskUsed.transform.parent = gameObject.transform;
+							//pra virar um child gameObject e se mover com o objeto original
+							tHanoiDone = true;
+							taskCreated = true;
+						}
+						else
+							task = false;
 						break;
 						
 						case "gas1":
-						TaskUsed = Instantiate(TaskGas1, transform.position, Quaternion.identity);
-						TaskUsed.transform.parent = gameObject.transform;
-						taskCreated = true;
+						if(tGas1Done == false)
+						{
+							TaskUsed = Instantiate(TaskGas1, transform.position, Quaternion.identity);
+							TaskUsed.transform.parent = gameObject.transform;
+							tGas1Done = true;
+							taskCreated = true;
+						}
+						else
+							task = false;
+						break;
+						
+						case "gas2":
+						if(taskGas2 && tGas2Done == false)
+						{
+							TaskUsed = Instantiate(TaskGas2, transform.position, Quaternion.identity);
+							TaskUsed.transform.parent = gameObject.transform;
+							tGas2Done = true;
+							taskCreated = true;
+						}
+						else
+							task = false;
 						break;
 						
 						default:
+						task = false;
 						break;
 					}
 				}
@@ -64,14 +91,8 @@ public class TasksScript : MonoBehaviour
 		//}
     }
 	
-	public void PlusTaskPoint()
+	public void TaskMoney()
 	{
-		pView.RPC("RPC_TaskPoint", RpcTarget.All);
-	}
-	
-	[PunRPC]
-	void RPC_TaskPoint()
-	{
-		taskPoints++;
+		PA.money += 100;
 	}
 }
