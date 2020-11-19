@@ -6,6 +6,8 @@ public class FioP : MonoBehaviour
 {
     [SerializeField]
 	TaskChupeta1 TC1;
+	[SerializeField]
+	TaskChupeta2 TC2;
 	
 	SpriteRenderer sRender;
 	
@@ -18,7 +20,7 @@ public class FioP : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(TC1.timerStartP)
+        if(TC1.timerStartP || TC2.timerStartP)
 			sRender.enabled = true;
     }
 }

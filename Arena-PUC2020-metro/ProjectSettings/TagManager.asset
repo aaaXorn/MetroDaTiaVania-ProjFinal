@@ -11,6 +11,8 @@ TagManager:
   - Tasks
   - TG1
   - TG2
+  - TC1
+  - TC2
   layers:
   - Default
   - TransparentFX

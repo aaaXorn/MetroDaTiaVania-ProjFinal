@@ -8,6 +8,8 @@ public class Raio1Script : MonoBehaviour
 	
 	[SerializeField]
 	TaskChupeta1 TC1;
+	[SerializeField]
+	TaskChupeta2 TC2;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +19,7 @@ public class Raio1Script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(TC1.timerStartV && TC1.timerStartP)
+        if(TC1.timerStartV && TC1.timerStartP || TC2.timerStartV && TC2.timerStartP)
 			anim.SetBool("On", true);
     }
 }

@@ -211,5 +211,15 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 			TS.task = true;
 			TS.currentTask = "gas2";
 		}
+		if(collision.gameObject.tag == "TC1")
+		{
+			TS.task = true;
+			TS.currentTask = "chupeta1";
+		}
+		if(collision.gameObject.tag == "TC2")
+		{
+			TS.task = true;
+			TS.currentTask = "chupeta2";
+		}
 	}
 }

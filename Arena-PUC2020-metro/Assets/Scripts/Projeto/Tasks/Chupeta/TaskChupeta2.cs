@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class TaskChupeta1 : MonoBehaviour
+public class TaskChupeta2 : MonoBehaviour
 {
 	PhotonView pView;
 	
@@ -46,8 +46,7 @@ public class TaskChupeta1 : MonoBehaviour
 			{
 				timerStartV = false;
 				timerStartP = false;
-				TS.taskChupeta2 = true;
-				TS.tChu1Done = true;
+				TS.tChu2Done = true;
 				TS.TaskMoney();
 				TS.task = false;
 			}
