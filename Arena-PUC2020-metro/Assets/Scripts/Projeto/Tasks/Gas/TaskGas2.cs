@@ -5,7 +5,7 @@ using Photon.Pun;
 
 public class TaskGas2 : MonoBehaviour
 {
-	PhotonView pView;
+	//PhotonView pView;
 	
 	[SerializeField]
 	GameObject Tasks;
@@ -22,9 +22,9 @@ public class TaskGas2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pView = GetComponent<PhotonView>();
+        //pView = GetComponent<PhotonView>();
 		
-		//if(pView.IsMine)//com comentarios pra testar as tasks!!!!!
+		//if(pView.IsMine)
 		//{
 			Tasks = GameObject.FindWithTag("Tasks");
 			TS = Tasks.GetComponent<TasksScript>();

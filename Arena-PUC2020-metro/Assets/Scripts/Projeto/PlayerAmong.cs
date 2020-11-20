@@ -10,6 +10,7 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 	SpriteRenderer sRender;
 	Rigidbody2D rb2D;
     PhotonView pView;
+	BoxCollider2D bc2D;
 	
 	[SerializeField]
 	GameObject MainCamera, VirtualCamera, Tasks;
@@ -20,9 +21,9 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 	[SerializeField]
 	TasksScript TS;
 	
-	int health;
-	int maxHealth;
-	bool alive = true;
+	int health = 5;
+	int maxHealth = 5;
+	public bool alive = true;
 	bool mayMove = true;
 	public bool mayAttack = true;
 	
@@ -30,7 +31,7 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 	
 	[SerializeField]
 	float inputX, inputY;//valor dos inputs, mudam de acordo com o input horizontal/vertical
-	float speedX = 5, speedY = 5, speedD = 3.5f;//velocidade horizontal/vertical/diagonal base, speedD = 0.7x speed
+	float speedX = 7, speedY = 7, speedD = 4.9f;//velocidade horizontal/vertical/diagonal base, speedD = 0.7x speed
 	[SerializeField]
 	float movementX, movementY;//velocidade usada
 	
@@ -46,9 +47,10 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 		sRender = GetComponent<SpriteRenderer>();
         rb2D = GetComponent<Rigidbody2D>();
 		pView = GetComponent<PhotonView>();
+		bc2D = GetComponent<BoxCollider2D>();
 		
-		//if(pView.IsMine)//com comentarios pra testar as tasks!!!!!
-		//{
+		if(pView.IsMine)
+		{
 			MainCamera = GameObject.FindWithTag("MainCamera");//necessario ja que o jogador e criado com Instantiate
 			VirtualCamera = GameObject.FindWithTag("VirtualCamera");
 			Tasks = GameObject.FindWithTag("Tasks");
@@ -58,7 +60,7 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 			
 			TS.Player = gameObject;
 			TS.PA = TS.Player.GetComponent<PlayerAmong>();
-		//}
+		}
 		
 		//Cursor.visible = false;//tira o cursor pra deixar so a crosshair
     }
@@ -68,25 +70,25 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (pView.IsMine)
         {
-			VCS.CameraFollow(gameObject);
-			
-			MouseVariables();
-		}
-		
-		if(alive)
-		{
-			if(health<=0)
+			if(alive)
 			{
-				Death();
-			}
-			else if(health>maxHealth)
-			{
-				health = maxHealth;
-			}
-		}
-		else
-		{
+				VCS.CameraFollow(gameObject);
 			
+				MouseVariables();
+			
+				if(health<=0)
+				{
+					pView.RPC("RPC_Death", RpcTarget.All);
+				}
+				else if(health>maxHealth)
+				{
+					health = maxHealth;
+				}
+			}
+			if(Input.GetKeyDown(KeyCode.Escape))
+			{
+				Application.Quit();
+			}
 		}
     }
 	
@@ -94,9 +96,12 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 	{
 		if (pView.IsMine)
         {
-			if(mayMove)
+			if(alive)
 			{
-				Movement();
+				if(mayMove)
+				{
+					Movement();
+				}
 			}
 		}
 	}
@@ -161,11 +166,6 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 		rb2D.velocity = new Vector2(movementX, movementY);
 	}
 	
-	void Death()
-	{
-		
-	}
-	
 	void MouseVariables()
 	{
 		cursorDistance = PCS.mousePos - transform.position;
@@ -197,9 +197,26 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 		{
 			anim.SetBool("Mover", false);
 		}
-		
+	
+	[PunRPC]
+	void RPC_Death()
+	{
+		alive = false;
+		bc2D.enabled = false;
+	}
+	
 	//funcoes de colisao e trigger
 	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		if(pView.IsMine)
+		{
+			Hit(collision);
+			
+			AtivaTasks(collision);
+		}
+	}
+	
+	void AtivaTasks(Collider2D collision)
 	{
 		if (collision.gameObject.tag == "TG1")
 		{
@@ -220,6 +237,14 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 		{
 			TS.task = true;
 			TS.currentTask = "chupeta2";
+		}
+	}
+	
+	void Hit(Collider2D collision)
+	{
+		if(collision.gameObject.tag == "Bullet0")
+		{
+			health--;
 		}
 	}
 }

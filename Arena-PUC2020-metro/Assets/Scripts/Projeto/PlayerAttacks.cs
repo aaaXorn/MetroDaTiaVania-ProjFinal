@@ -7,6 +7,9 @@ public class PlayerAttacks : MonoBehaviour
 {
 	PhotonView pView;
 	
+	Animator anim;
+	SpriteRenderer sRender;
+	
 	[SerializeField]
 	GameObject bulletPrefab, bullet;
 	[SerializeField]
@@ -15,12 +18,16 @@ public class PlayerAttacks : MonoBehaviour
 	PlayerAmong PA;
 	
 	float attackTimer = 0.1f;
+	bool attackStart = false;
+	float attackCD = 1;
 	
 	float bulletSpeed = 10;
     // Start is called before the first frame update
     void Start()
     {
         pView = GetComponent<PhotonView>();
+		anim = GetComponent<Animator>();
+		sRender = GetComponent<SpriteRenderer>();
 		
 		RoboPlayer = transform.parent.gameObject;//faz a variavel RoboPlayer ser o objeto parente de attackDirection
 		PA = RoboPlayer.GetComponent<PlayerAmong>();
@@ -29,11 +36,11 @@ public class PlayerAttacks : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if (pView.IsMine)
+		if (pView.IsMine && PA.alive)
 		{
 			pView.RPC("RPC_Rotation", RpcTarget.All);
 			
-			if(PA.mayAttack)
+			if(PA.mayAttack && attackStart == false)
 			{
 				if(Input.GetMouseButtonDown(0))
 				{
@@ -43,16 +50,26 @@ public class PlayerAttacks : MonoBehaviour
 				
 				if(PA.shoot)
 				{
-					if(attackTimer<0)
+					if(attackTimer<=0)
 					{
 						pView.RPC("RPC_Shoot", RpcTarget.All);
 						attackTimer = 0.1f;
 						PA.shoot = false;
+						attackStart = true;
 					}
 					else
 					{
 						attackTimer -= Time.deltaTime;
 					}
+				}
+			}
+			if(attackStart == true)
+			{
+				attackCD -= Time.deltaTime;
+				if(attackCD<=0)
+				{
+					attackStart = false;
+					attackCD = 1;
 				}
 			}
 		}
@@ -70,6 +87,14 @@ public class PlayerAttacks : MonoBehaviour
 	void RPC_Rotation()//rotaciona o objeto attackDirection para ele apontar pro cursor
 	{
 		transform.rotation = Quaternion.Euler(0, 0, PA.directionZ);
+		if(PA.cursorDistance.x<0)
+		{
+			sRender.flipY = true;
+		}
+		else
+		{
+			sRender.flipY = false;
+		}
 	}
 	
 	[PunRPC]
@@ -77,8 +102,9 @@ public class PlayerAttacks : MonoBehaviour
 	{
 		//bullet = PhotonNetwork.Instantiate("bullet0", transform.position, Quaternion.Euler(0, 0, PA.directionZ));
 		//ver com PhotonNetwork, causou bugs entao nao esta sendo usada
+		anim.SetTrigger("Pew");
 		bullet = Instantiate(bulletPrefab, transform.position, Quaternion.Euler(0, 0, PA.directionZ));
-		bullet.transform.Translate(-3.1f, 0, 0);//para o tiro não spawnar dentro do player, negativo pra ir pro lado certo
+		bullet.transform.Translate(-3.35f, 0, 0);//para o tiro não spawnar dentro do player, negativo pra ir pro lado certo
 		bullet.GetComponent<Rigidbody2D>().velocity = PA.attackDirection * bulletSpeed;
 	}
 }

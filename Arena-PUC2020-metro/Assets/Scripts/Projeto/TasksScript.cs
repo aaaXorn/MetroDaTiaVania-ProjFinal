@@ -5,7 +5,7 @@ using Photon.Pun;
 
 public class TasksScript : MonoBehaviour
 {
-	PhotonView pView;
+	//PhotonView pView;
 	
 	public GameObject Player;
 	[SerializeField]
@@ -26,13 +26,13 @@ public class TasksScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pView = GetComponent<PhotonView>();
+        //pView = GetComponent<PhotonView>();
     }
 
     // Update is called once per frame
     void Update()
     {
-		//if(pView.IsMine)//com comentarios pra testar as tasks!!!!!
+		//if(pView.IsMine)
 		//{
 			if(task == true)
 			{
