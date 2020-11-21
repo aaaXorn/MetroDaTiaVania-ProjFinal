@@ -55,6 +55,7 @@ MonoBehaviour:
   - RPC_Aim
   - RPC_TaskPoint
   - RPC_Death
+  - RPC_SpriteDisable
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

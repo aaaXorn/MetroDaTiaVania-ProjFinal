@@ -73,6 +73,8 @@ public class PlayerAttacks : MonoBehaviour
 				}
 			}
 		}
+		else if(PA.alive == false)
+			pView.RPC("RPC_SpriteDisable", RpcTarget.All);
     }
 
 	void Aim()//direcao do ataque com base na posicao do cursor
@@ -106,5 +108,11 @@ public class PlayerAttacks : MonoBehaviour
 		bullet = Instantiate(bulletPrefab, transform.position, Quaternion.Euler(0, 0, PA.directionZ));
 		bullet.transform.Translate(-3.35f, 0, 0);//para o tiro não spawnar dentro do player, negativo pra ir pro lado certo
 		bullet.GetComponent<Rigidbody2D>().velocity = PA.attackDirection * bulletSpeed;
+	}
+	
+	[PunRPC]
+	void RPC_SpriteDisable()
+	{
+		sRender.enabled = false;
 	}
 }
