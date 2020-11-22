@@ -48,7 +48,7 @@ public class MyLobby : MonoBehaviourPunCallbacks
         //cria um objeto tipo RoomOptions para setar parametros da sala
         RoomOptions rOp = new RoomOptions();
         //quantidade maxima de jogadores
-        rOp.MaxPlayers = 10;
+        rOp.MaxPlayers = 6;
         //cria a sala com o nome entre aspas
         PhotonNetwork.JoinOrCreateRoom("AmongRoom", rOp, TypedLobby.Default, null);
     }

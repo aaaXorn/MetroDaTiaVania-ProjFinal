@@ -56,6 +56,16 @@ MonoBehaviour:
   - RPC_TaskPoint
   - RPC_Death
   - RPC_SpriteDisable
+  - RPC_inocenPlus
+  - RPC_sabotaPlus
+  - RPC_inocenMorre
+  - RPC_sabotaMorre
+  - RPC_role1
+  - RPC_role2
+  - RPC_role3
+  - RPC_role4
+  - RPC_role5
+  - RPC_role6
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

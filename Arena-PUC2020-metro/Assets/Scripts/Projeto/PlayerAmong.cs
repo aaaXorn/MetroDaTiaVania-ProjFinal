@@ -13,19 +13,28 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 	BoxCollider2D bc2D;
 	
 	[SerializeField]
-	GameObject MainCamera, VirtualCamera, Tasks;
+	GameObject MainCamera, VirtualCamera, Tasks, RoleSet;
 	[SerializeField]
 	PlayerCameraScript PCS;
 	[SerializeField]
 	VCameraScript VCS;
 	[SerializeField]
 	TasksScript TS;
+	[SerializeField]
+	RoleScript RS;
 	
 	int health = 5;
 	int maxHealth = 5;
 	public bool alive = true;
 	bool mayMove = true;
 	public bool mayAttack = true;
+	
+	public string role;
+	bool roleCall = true;
+	float roleCallTimer = 5;
+	[SerializeField]
+	GameObject Role, RoleInocente, RoleDetetive, RoleSabotador;
+	public bool roleOK = false;
 	
 	public int money = 0;
 	
@@ -51,6 +60,12 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 		
 		if(pView.IsMine)
 		{
+			RoleSet = GameObject.FindWithTag("RoleSet");
+			RS = RoleSet.GetComponent<RoleScript>();
+			
+			RS.Player = gameObject;
+			RS.PA = RS.Player.GetComponent<PlayerAmong>();
+			
 			MainCamera = GameObject.FindWithTag("MainCamera");//necessario ja que o jogador e criado com Instantiate
 			VirtualCamera = GameObject.FindWithTag("VirtualCamera");
 			Tasks = GameObject.FindWithTag("Tasks");
@@ -60,6 +75,8 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 			
 			TS.Player = gameObject;
 			TS.PA = TS.Player.GetComponent<PlayerAmong>();
+			
+			//RoleCall();
 		}
 		
 		//Cursor.visible = false;//tira o cursor pra deixar so a crosshair
@@ -70,6 +87,11 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (pView.IsMine)
         {
+			if(roleOK == false)
+			{
+				RS.SetRoles();
+			}
+			
 			if(alive)
 			{
 				VCS.CameraFollow(gameObject);
@@ -78,6 +100,10 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 			
 				if(health<=0)
 				{
+					if(role == "inocente")
+						RS.inocenMorre();
+					else if(role == "sabotador")
+						RS.sabotaMorre();
 					pView.RPC("RPC_Death", RpcTarget.All);
 				}
 				else if(health>maxHealth)
@@ -88,6 +114,17 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 			if(Input.GetKeyDown(KeyCode.Escape))
 			{
 				Application.Quit();
+			}
+			
+			if(roleCallTimer>0 && roleCall == true)
+			{
+				mayAttack = false;
+				roleCallTimer -= Time.deltaTime;
+			}
+			else if(roleCallTimer<=0 && roleCall == true)
+			{
+				mayAttack = true;
+				roleCall = false;
 			}
 		}
     }
@@ -117,6 +154,7 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 			stream.SendNext(directionZ);
 			stream.SendNext(cursorDistance);
 			stream.SendNext(attackDirection);
+			stream.SendNext(role);
 		}
 		else//recebe as variaveis
 		{
@@ -125,6 +163,7 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 			directionZ = (float)stream.ReceiveNext();
 			cursorDistance = (Vector3)stream.ReceiveNext();
 			attackDirection = (Vector2)stream.ReceiveNext();
+			role = (string)stream.ReceiveNext();
 		}
 	}
 	
@@ -174,6 +213,28 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 		//Atan2 pega o angulo, Rag2Deg transforma em graus
 	}
 	
+	public void RoleCall()
+	{
+		roleOK = true;
+		switch(role)
+		{
+			case "inocente":
+			Role = Instantiate(RoleInocente, transform.position, Quaternion.identity);
+			Role.transform.parent = gameObject.transform;
+			break;
+			
+			case "detetive":
+			Role = Instantiate(RoleDetetive, transform.position, Quaternion.identity);
+			Role.transform.parent = gameObject.transform;
+			break;
+			
+			case "sabotador":
+			Role = Instantiate(RoleSabotador, transform.position, Quaternion.identity);
+			Role.transform.parent = gameObject.transform;
+			break;
+		}
+	}
+	
 	//funcoes de RPC pro online funcionar
 	
 	//animacao
@@ -201,6 +262,7 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 	[PunRPC]
 	void RPC_Death()
 	{
+		anim.SetBool("Morto", true);
 		alive = false;
 		bc2D.enabled = false;
 	}
@@ -212,7 +274,10 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 		{
 			Hit(collision);
 			
-			AtivaTasks(collision);
+			if(role == "inocente")
+			{
+				AtivaTasks(collision);
+			}
 		}
 	}
 	

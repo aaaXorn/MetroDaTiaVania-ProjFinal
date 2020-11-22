@@ -1,0 +1,338 @@
+fileFormatVersion: 2
+guid: 41397758f1b25624694efe8bc8c2cb3d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2768852967712082508
+    second: robo_morto_0
+  - first:
+      213: -8816435520050007908
+    second: robo_morto_1
+  - first:
+      213: -6011698366561047597
+    second: robo_morto_2
+  - first:
+      213: -8125583046899243607
+    second: robo_morto_3
+  - first:
+      213: -6727329190606624036
+    second: robo_morto_4
+  - first:
+      213: -7778219737229921601
+    second: robo_morto_5
+  - first:
+      213: -5078510963601452068
+    second: robo_morto_6
+  - first:
+      213: -2006586846664949664
+    second: robo_morto_7
+  - first:
+      213: 3365828254487486174
+    second: robo_morto_8
+  - first:
+      213: 303959267315635889
+    second: robo_morto_9
+  - first:
+      213: 7060685793324793338
+    second: robo_morto_10
+  - first:
+      213: -1609433053807104093
+    second: robo_morto_11
+  - first:
+      213: 4388262722167155433
+    second: robo_morto_0
+  - first:
+      213: -5990254688877042241
+    second: robo_morto_1
+  - first:
+      213: 8405485308834821410
+    second: robo_morto_2
+  - first:
+      213: -3082335159599573713
+    second: robo_morto_3
+  - first:
+      213: -5392613609705982553
+    second: robo_morto_16
+  - first:
+      213: -8534809994416689953
+    second: robo_morto_17
+  - first:
+      213: -5190023198401083120
+    second: robo_morto_18
+  - first:
+      213: -2138620742107068133
+    second: robo_morto_19
+  - first:
+      213: -5633852760747470320
+    second: robo_morto_20
+  - first:
+      213: 1427020268440724332
+    second: robo_morto_21
+  - first:
+      213: -9063032522211111944
+    second: robo_morto_4
+  - first:
+      213: 2021968874599712045
+    second: robo_morto_5
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: 2
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 50
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: robo_morto_0
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 291
+        width: 133
+        height: 182
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9eaacdf12bd36ec30800000000000000
+      internalID: 4388262722167155433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robo_morto_1
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 289
+        width: 133
+        height: 187
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb5ad5329175edca0800000000000000
+      internalID: -5990254688877042241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robo_morto_2
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 283
+        width: 133
+        height: 190
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2253dddaa5846a470800000000000000
+      internalID: 8405485308834821410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robo_morto_3
+      rect:
+        serializedVersion: 2
+        x: 502
+        y: 281
+        width: 133
+        height: 191
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f25de55d0885935d0800000000000000
+      internalID: -3082335159599573713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robo_morto_4
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 68
+        width: 133
+        height: 189
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fb4bc560f3a93280800000000000000
+      internalID: -9063032522211111944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robo_morto_5
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 69
+        width: 134
+        height: 187
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2589658af97f0c10800000000000000
+      internalID: 2021968874599712045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 05b15b4f46906074189e4595ae82d833
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

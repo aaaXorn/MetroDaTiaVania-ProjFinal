@@ -13,6 +13,7 @@ TagManager:
   - TG2
   - TC1
   - TC2
+  - RoleSet
   layers:
   - Default
   - TransparentFX

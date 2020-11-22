@@ -8,7 +8,6 @@ public class TasksScript : MonoBehaviour
 	//PhotonView pView;
 	
 	public GameObject Player;
-	[SerializeField]
 	public PlayerAmong PA;
 	
 	[SerializeField]

@@ -396,6 +396,9 @@ MonoBehaviour:
   - Type: 4
     SynchronizeType: 0
     Name: Mover
+  - Type: 4
+    SynchronizeType: 0
+    Name: Morto
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
@@ -417,7 +420,15 @@ MonoBehaviour:
   PCS: {fileID: 0}
   VCS: {fileID: 0}
   TS: {fileID: 0}
+  alive: 1
   mayAttack: 1
+  role: 
+  RoleInocente: {fileID: 8409171878549660019, guid: 0175fd5c4713bfb4fae847cc9465c9ab,
+    type: 3}
+  RoleDetetive: {fileID: 7886899936622608398, guid: e55a3833ee7a41c48b6802e0d25a61f2,
+    type: 3}
+  RoleSabotador: {fileID: 1573393437702422554, guid: 46e68a8cfbca2f6438f7d744a46e7639,
+    type: 3}
   money: 0
   inputX: 0
   inputY: 0
