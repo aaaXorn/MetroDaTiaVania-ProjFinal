@@ -66,6 +66,9 @@ MonoBehaviour:
   - RPC_role4
   - RPC_role5
   - RPC_role6
+  - RPC_maisPlayer
+  - RPC_numeroInocenMais
+  - RPC_numeroSabotaMais
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

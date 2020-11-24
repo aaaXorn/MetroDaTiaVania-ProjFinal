@@ -29,8 +29,10 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 	bool mayMove = true;
 	public bool mayAttack = true;
 	
+	public bool mayBeAttacked = false;
+	
 	public string role;
-	bool roleCall = true;
+	bool roleCall = false;
 	float roleCallTimer = 5;
 	[SerializeField]
 	GameObject Role, RoleInocente, RoleDetetive, RoleSabotador;
@@ -66,6 +68,8 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 			RS.Player = gameObject;
 			RS.PA = RS.Player.GetComponent<PlayerAmong>();
 			
+			RS.maisPlayer();
+			
 			MainCamera = GameObject.FindWithTag("MainCamera");//necessario ja que o jogador e criado com Instantiate
 			VirtualCamera = GameObject.FindWithTag("VirtualCamera");
 			Tasks = GameObject.FindWithTag("Tasks");
@@ -87,11 +91,6 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (pView.IsMine)
         {
-			if(roleOK == false)
-			{
-				RS.SetRoles();
-			}
-			
 			if(alive)
 			{
 				VCS.CameraFollow(gameObject);
@@ -116,14 +115,13 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 				Application.Quit();
 			}
 			
-			if(roleCallTimer>0 && roleCall == true)
+			if(roleCallTimer>0)
 			{
-				mayAttack = false;
-				roleCallTimer -= Time.deltaTime;
+				if(roleCall == true)
+					roleCallTimer -= Time.deltaTime;
 			}
 			else if(roleCallTimer<=0 && roleCall == true)
 			{
-				mayAttack = true;
 				roleCall = false;
 			}
 		}
@@ -216,6 +214,7 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 	public void RoleCall()
 	{
 		roleOK = true;
+		roleCall = true;
 		switch(role)
 		{
 			case "inocente":
@@ -272,11 +271,26 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 	{
 		if(pView.IsMine)
 		{
-			Hit(collision);
+			if(mayBeAttacked)
+				Hit(collision);
 			
 			if(role == "inocente")
 			{
 				AtivaTasks(collision);
+			}
+		}
+	}
+	
+	void OnTriggerStay2D(Collider2D collision)
+	{
+		if(pView.IsMine)
+		{
+			if(collision.gameObject.tag == "RoleSet")
+			{
+				if(roleOK == false)
+				{
+					RS.SetRoles();
+				}
 			}
 		}
 	}
