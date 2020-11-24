@@ -33,10 +33,11 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 	
 	public string role;
 	bool roleCall = false;
-	float roleCallTimer = 5;
+	float roleCallTimer = 4;
 	[SerializeField]
 	GameObject Role, RoleInocente, RoleDetetive, RoleSabotador;
 	public bool roleOK = false;
+	public bool skinOK = false;
 	
 	public int money = 0;
 	
@@ -79,8 +80,6 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 			
 			TS.Player = gameObject;
 			TS.PA = TS.Player.GetComponent<PlayerAmong>();
-			
-			//RoleCall();
 		}
 		
 		//Cursor.visible = false;//tira o cursor pra deixar so a crosshair
@@ -230,6 +229,7 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 			case "sabotador":
 			Role = Instantiate(RoleSabotador, transform.position, Quaternion.identity);
 			Role.transform.parent = gameObject.transform;
+			money += 300;
 			break;
 		}
 	}
@@ -288,9 +288,9 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 			if(collision.gameObject.tag == "RoleSet")
 			{
 				if(roleOK == false)
-				{
 					RS.SetRoles();
-				}
+				if(skinOK == false)
+					RS.SetSkin();
 			}
 		}
 	}

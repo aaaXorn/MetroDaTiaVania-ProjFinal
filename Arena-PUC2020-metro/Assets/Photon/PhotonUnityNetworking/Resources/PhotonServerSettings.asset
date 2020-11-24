@@ -69,6 +69,17 @@ MonoBehaviour:
   - RPC_maisPlayer
   - RPC_numeroInocenMais
   - RPC_numeroSabotaMais
+  - RPC_skin1
+  - RPC_skin2
+  - RPC_skin3
+  - RPC_skin4
+  - RPC_skin5
+  - RPC_skin6
+  - RPC_skin7
+  - RPC_skin8
+  - RPC_skin9
+  - RPC_skin10
+  - RPC_anima
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
