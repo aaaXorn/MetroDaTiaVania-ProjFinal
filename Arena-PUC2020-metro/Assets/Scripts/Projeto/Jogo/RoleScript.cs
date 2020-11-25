@@ -33,7 +33,7 @@ public class RoleScript : MonoBehaviour
 	int numeroSabota;
 	//bool inocente;
 	
-	bool start;
+	public bool start;
 	float startTimer = 6;
 	
     // Start is called before the first frame update
