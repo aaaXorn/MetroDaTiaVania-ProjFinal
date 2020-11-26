@@ -231,9 +231,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 1595613050090568535, guid: a37a2977c50cd2a42ab6e89d27327d0a,
     type: 3}
-  bullet: {fileID: 0}
+  Ataque: {fileID: 0}
+  swordPrefab: {fileID: 1785671862604655513, guid: a31538c6e2b55b04e9ae1f3d4d753d61,
+    type: 3}
   RoboPlayer: {fileID: 0}
   PA: {fileID: 0}
+  armaUsada: 0
 --- !u!114 &4656383808610465338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -290,10 +293,13 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: Pew
+  - Type: 3
+    SynchronizeType: 2
+    Name: ArmaUsada
   m_SynchronizeLayers:
-  - SynchronizeType: 0
+  - SynchronizeType: 2
     LayerIndex: 0
 --- !u!95 &1880309786574947822
 Animator:
@@ -600,10 +606,14 @@ MonoBehaviour:
   VirtualCamera: {fileID: 0}
   Tasks: {fileID: 0}
   RoleSet: {fileID: 0}
+  HealthRTr: {fileID: 0}
   PCS: {fileID: 0}
   VCS: {fileID: 0}
   TS: {fileID: 0}
   RS: {fileID: 0}
+  HS: {fileID: 0}
+  health: 5
+  maxHealth: 5
   alive: 1
   mayAttack: 1
   mayBeAttacked: 0

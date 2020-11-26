@@ -80,6 +80,7 @@ MonoBehaviour:
   - RPC_skin9
   - RPC_skin10
   - RPC_anima
+  - RPC_Sword
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

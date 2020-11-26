@@ -11,7 +11,7 @@ public class PlayerAttacks : MonoBehaviour
 	SpriteRenderer sRender;
 	
 	[SerializeField]
-	GameObject bulletPrefab, bullet;
+	GameObject bulletPrefab, Ataque, swordPrefab;
 	[SerializeField]
 	GameObject RoboPlayer;
 	[SerializeField]
@@ -21,7 +21,9 @@ public class PlayerAttacks : MonoBehaviour
 	bool attackStart = false;
 	float attackCD = 1;
 	
-	float bulletSpeed = 10;
+	public int armaUsada = 0;
+	
+	float bulletSpeed = 11;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +41,7 @@ public class PlayerAttacks : MonoBehaviour
 		if (pView.IsMine && PA.alive)
 		{
 			pView.RPC("RPC_Rotation", RpcTarget.All);
+			anim.SetInteger("ArmaUsada", armaUsada);
 			
 			if(PA.mayAttack && attackStart == false)
 			{
@@ -52,7 +55,20 @@ public class PlayerAttacks : MonoBehaviour
 				{
 					if(attackTimer<=0)
 					{
-						pView.RPC("RPC_Shoot", RpcTarget.All);
+						anim.SetTrigger("Pew");
+						switch(armaUsada)
+						{
+							case 0:
+							pView.RPC("RPC_Shoot", RpcTarget.All);
+							break;
+							
+							case 1:
+							pView.RPC("RPC_Sword", RpcTarget.All);
+							break;
+							
+							default:
+							break;
+						}
 						attackTimer = 0.1f;
 						PA.shoot = false;
 						attackStart = true;
@@ -102,12 +118,19 @@ public class PlayerAttacks : MonoBehaviour
 	[PunRPC]
 	void RPC_Shoot()//atira um prefab na direcao do cursor
 	{
-		//bullet = PhotonNetwork.Instantiate("bullet0", transform.position, Quaternion.Euler(0, 0, PA.directionZ));
-		//ver com PhotonNetwork, causou bugs entao nao esta sendo usada
-		anim.SetTrigger("Pew");
-		bullet = Instantiate(bulletPrefab, transform.position, Quaternion.Euler(0, 0, PA.directionZ));
-		bullet.transform.Translate(-3.35f, 0, 0);//para o tiro não spawnar dentro do player, negativo pra ir pro lado certo
-		bullet.GetComponent<Rigidbody2D>().velocity = PA.attackDirection * bulletSpeed;
+		//Ataque = PhotonNetwork.Instantiate("bullet0", transform.position, Quaternion.Euler(0, 0, PA.directionZ));
+		//versao com PhotonNetwork, causou bugs entao nao esta sendo usada
+		Ataque = Instantiate(bulletPrefab, transform.position, Quaternion.Euler(0, 0, PA.directionZ));
+		Ataque.transform.Translate(-3.35f, 0, 0);//para o tiro não spawnar dentro do player, negativo pra ir pro lado certo
+		Ataque.GetComponent<Rigidbody2D>().velocity = PA.attackDirection * bulletSpeed;
+	}
+	
+	[PunRPC]
+	void RPC_Sword()
+	{
+		Ataque = Instantiate(swordPrefab, transform.position, Quaternion.Euler(0, 0, PA.directionZ));
+		Ataque.transform.parent = gameObject.transform;
+		Ataque.transform.Translate(-4.65f, 0, 0);
 	}
 	
 	[PunRPC]

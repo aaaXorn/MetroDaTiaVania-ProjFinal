@@ -482,7 +482,7 @@ RectTransform:
   - {fileID: 850683557}
   - {fileID: 203348276}
   m_Father: {fileID: 2140028864}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -532,14 +532,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 5cf420a21ca617e43b94e5fc8c095fc7, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -637,8 +637,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 350319217}
   m_HandleRect: {fileID: 350319216}
   m_Direction: 2
-  m_Value: 1.0000734
-  m_Size: 0.83826524
+  m_Value: 1.0000745
+  m_Size: 0.8382654
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1795,6 +1795,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   content: {fileID: 610097193}
   itens: []
+  fundoInventario: {fileID: 8263473429079886015, guid: c65b6e50337f06041aec0ceed6d8fe41,
+    type: 3}
   teste1: 0
   teste2: 0
 --- !u!1 &556246940
@@ -3297,12 +3299,12 @@ GameObject:
   - component: {fileID: 961003886}
   - component: {fileID: 961003887}
   m_Layer: 5
-  m_Name: Teste
+  m_Name: TesteInventario
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &961003886
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3316,7 +3318,7 @@ RectTransform:
   m_Children:
   - {fileID: 411682475}
   m_Father: {fileID: 2140028864}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5470,6 +5472,67 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &1565706332
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1565706333}
+  - component: {fileID: 1565706335}
+  - component: {fileID: 1565706334}
+  m_Layer: 5
+  m_Name: Vidas
+  m_TagString: Vidas
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1565706333
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1565706332}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2140028864}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 44.600006, y: -39.299988}
+  m_SizeDelta: {x: 24.676147, y: 24.676147}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1565706334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1565706332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6930bdece7752344d8429bfa17668de1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  PA: {fileID: 0}
+  prefabHP: {fileID: 1415949929078123841, guid: de4c31fc6fecbe944b60d306e46d7622,
+    type: 3}
+--- !u!222 &1565706335
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1565706332}
+  m_CullTransparentMesh: 0
 --- !u!1 &1583603457
 GameObject:
   m_ObjectHideFlags: 0
@@ -6543,7 +6606,7 @@ GameObject:
   - component: {fileID: 2140028861}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6619,6 +6682,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 1565706333}
   - {fileID: 144659756}
   - {fileID: 961003886}
   m_Father: {fileID: 0}

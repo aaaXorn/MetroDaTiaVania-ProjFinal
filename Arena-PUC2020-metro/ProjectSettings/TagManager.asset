@@ -15,6 +15,9 @@ TagManager:
   - TC2
   - RoleSet
   - Inventario
+  - Dano2
+  - Canvas
+  - Vidas
   layers:
   - Default
   - TransparentFX

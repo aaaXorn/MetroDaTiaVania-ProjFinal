@@ -13,7 +13,7 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 	BoxCollider2D bc2D;
 	
 	[SerializeField]
-	GameObject MainCamera, VirtualCamera, Tasks, RoleSet;
+	GameObject MainCamera, VirtualCamera, Tasks, RoleSet, HealthRTr;
 	[SerializeField]
 	PlayerCameraScript PCS;
 	[SerializeField]
@@ -22,9 +22,11 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 	TasksScript TS;
 	[SerializeField]
 	RoleScript RS;
+	[SerializeField]
+	HealthScript HS;
 	
-	int health = 5;
-	int maxHealth = 5;
+	public int health = 5;
+	public int maxHealth = 5;
 	public bool alive = true;
 	bool mayMove = true;
 	public bool mayAttack = true;
@@ -69,6 +71,12 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 			RS.Player = gameObject;
 			RS.PA = RS.Player.GetComponent<PlayerAmong>();
 			
+			HealthRTr = GameObject.FindWithTag("Vidas");
+			HS = HealthRTr.GetComponent<HealthScript>();
+			
+			HS.Player = gameObject;
+			HS.PA = HS.Player.GetComponent<PlayerAmong>();
+			
 			RS.maisPlayer();
 			
 			MainCamera = GameObject.FindWithTag("MainCamera");//necessario ja que o jogador e criado com Instantiate
@@ -80,6 +88,11 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 			
 			TS.Player = gameObject;
 			TS.PA = TS.Player.GetComponent<PlayerAmong>();
+			
+			for(int i=0; i<health; i++)
+			{
+				HS.Heal();
+			}
 		}
 		
 		//Cursor.visible = false;//tira o cursor pra deixar so a crosshair
@@ -323,7 +336,12 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 	{
 		if(collision.gameObject.tag == "Bullet0")
 		{
-			health--;
+			HS.Dano(1);
+		}
+		
+		if(collision.gameObject.tag == "Dano2")
+		{
+			HS.Dano(2);
 		}
 	}
 }
