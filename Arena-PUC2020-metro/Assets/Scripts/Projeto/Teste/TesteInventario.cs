@@ -23,7 +23,6 @@ public class TesteInventario : MonoBehaviour
 	
 	public void Teste()
 	{
-		IS.teste1 = true;
-		IS.SetItem(ItemTest);
+		IS.SetItem(ItemTest, 1);
 	}
 }

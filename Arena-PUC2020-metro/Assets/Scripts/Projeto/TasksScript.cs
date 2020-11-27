@@ -47,6 +47,8 @@ public class TasksScript : MonoBehaviour
 							//pra virar um child gameObject e se mover com o objeto original
 							tHanoiDone = true;
 							taskCreated = true;
+							PA.mayMove = false;
+							PA.mayAttack = false;
 						}
 						else
 							task = false;
@@ -58,6 +60,8 @@ public class TasksScript : MonoBehaviour
 							TaskUsed = Instantiate(TaskGas1, transform.position, Quaternion.identity);
 							TaskUsed.transform.parent = gameObject.transform;
 							taskCreated = true;
+							PA.mayMove = false;
+							PA.mayAttack = false;
 						}
 						else
 							task = false;
@@ -69,6 +73,8 @@ public class TasksScript : MonoBehaviour
 							TaskUsed = Instantiate(TaskGas2, transform.position, Quaternion.identity);
 							TaskUsed.transform.parent = gameObject.transform;
 							taskCreated = true;
+							PA.mayMove = false;
+							PA.mayAttack = false;
 						}
 						else
 							task = false;
@@ -80,6 +86,8 @@ public class TasksScript : MonoBehaviour
 							TaskUsed = Instantiate(TaskChupeta1, transform.position, Quaternion.identity);
 							TaskUsed.transform.parent = gameObject.transform;
 							taskCreated = true;
+							PA.mayMove = false;
+							PA.mayAttack = false;
 						}
 						break;
 						
@@ -89,6 +97,8 @@ public class TasksScript : MonoBehaviour
 							TaskUsed = Instantiate(TaskChupeta2, transform.position, Quaternion.identity);
 							TaskUsed.transform.parent = gameObject.transform;
 							taskCreated = true;
+							PA.mayMove = false;
+							PA.mayAttack = false;
 						}
 						break;
 						
@@ -96,6 +106,14 @@ public class TasksScript : MonoBehaviour
 						task = false;
 						break;
 					}
+				}
+				
+				if(Input.GetKeyDown(KeyCode.T))
+				{
+					taskCreated = false;
+					task = false;
+					PA.mayMove = true;
+					PA.mayAttack = true;
 				}
 			}
 			else
@@ -109,5 +127,7 @@ public class TasksScript : MonoBehaviour
 	public void TaskMoney()
 	{
 		PA.money += 100;
+		PA.mayMove = true;
+		PA.mayAttack = true;
 	}
 }

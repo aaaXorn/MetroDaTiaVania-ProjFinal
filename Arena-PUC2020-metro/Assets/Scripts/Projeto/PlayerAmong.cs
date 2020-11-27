@@ -13,7 +13,9 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 	BoxCollider2D bc2D;
 	
 	[SerializeField]
-	GameObject MainCamera, VirtualCamera, Tasks, RoleSet, HealthRTr;
+	PlayerAttacks PAtk;
+	[SerializeField]
+	GameObject MainCamera, VirtualCamera, Tasks, RoleSet, HealthRTr, Inventario;
 	[SerializeField]
 	PlayerCameraScript PCS;
 	[SerializeField]
@@ -24,11 +26,13 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 	RoleScript RS;
 	[SerializeField]
 	HealthScript HS;
+	[SerializeField]
+	InventarioScript IS;
 	
 	public int health = 5;
 	public int maxHealth = 5;
 	public bool alive = true;
-	bool mayMove = true;
+	public bool mayMove = true;
 	public bool mayAttack = true;
 	
 	public bool mayBeAttacked = false;
@@ -71,13 +75,20 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 			RS.Player = gameObject;
 			RS.PA = RS.Player.GetComponent<PlayerAmong>();
 			
+			RS.maisPlayer();
+			
 			HealthRTr = GameObject.FindWithTag("Vidas");
 			HS = HealthRTr.GetComponent<HealthScript>();
 			
 			HS.Player = gameObject;
 			HS.PA = HS.Player.GetComponent<PlayerAmong>();
 			
-			RS.maisPlayer();
+			Inventario = GameObject.FindWithTag("Inventario");
+			IS = Inventario.GetComponent<InventarioScript>();
+			
+			IS.Player = gameObject;
+			IS.PA = IS.Player.GetComponent<PlayerAmong>();
+			IS.PAtk = PAtk;
 			
 			MainCamera = GameObject.FindWithTag("MainCamera");//necessario ja que o jogador e criado com Instantiate
 			VirtualCamera = GameObject.FindWithTag("VirtualCamera");

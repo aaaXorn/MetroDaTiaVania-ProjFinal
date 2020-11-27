@@ -21,7 +21,9 @@ public class PlayerAttacks : MonoBehaviour
 	bool attackStart = false;
 	float attackCD = 1;
 	
-	public int armaUsada = 0;
+	[SerializeField]
+	int armaUsada = 1;
+	public int arma1, arma2, arma3, arma4, arma5;
 	
 	float bulletSpeed = 11;
     // Start is called before the first frame update
@@ -56,19 +58,7 @@ public class PlayerAttacks : MonoBehaviour
 					if(attackTimer<=0)
 					{
 						anim.SetTrigger("Pew");
-						switch(armaUsada)
-						{
-							case 0:
-							pView.RPC("RPC_Shoot", RpcTarget.All);
-							break;
-							
-							case 1:
-							pView.RPC("RPC_Sword", RpcTarget.All);
-							break;
-							
-							default:
-							break;
-						}
+						Ataques();
 						attackTimer = 0.1f;
 						PA.shoot = false;
 						attackStart = true;
@@ -88,6 +78,17 @@ public class PlayerAttacks : MonoBehaviour
 					attackCD = 1;
 				}
 			}
+			
+			if(Input.GetKeyDown(KeyCode.Alpha1))
+				armaUsada = arma1;
+			else if(Input.GetKeyDown(KeyCode.Alpha2))
+				armaUsada = arma2;
+			else if(Input.GetKeyDown(KeyCode.Alpha3))
+				armaUsada = arma3;
+			else if(Input.GetKeyDown(KeyCode.Alpha4))
+				armaUsada = arma4;
+			else if(Input.GetKeyDown(KeyCode.Alpha5))
+				armaUsada = arma5;
 		}
 		else if(PA.alive == false)
 			pView.RPC("RPC_SpriteDisable", RpcTarget.All);
@@ -98,6 +99,23 @@ public class PlayerAttacks : MonoBehaviour
 		PA.cursorMagnitude = PA.cursorDistance.magnitude;
 		PA.attackDirection = -1 * PA.cursorDistance / PA.cursorMagnitude;//direçao do tiro, "-1 *" para corrigir
 		PA.attackDirection.Normalize();//faz o valor ser 1, mas mantem a direçao
+	}
+
+	void Ataques()
+	{
+		switch(armaUsada)
+		{
+			case 1:
+			pView.RPC("RPC_Shoot", RpcTarget.All);
+			break;
+				
+			case 2:
+			pView.RPC("RPC_Sword", RpcTarget.All);
+			break;
+			
+			default:
+			break;
+		}
 	}
 
 	//funcoes do RPC
