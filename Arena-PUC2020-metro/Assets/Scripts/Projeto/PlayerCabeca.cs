@@ -55,4 +55,9 @@ public class PlayerCabeca : MonoBehaviour//PunCallbacks, IPunObservable
 		if(pView.IsMine)
 			anim.SetInteger("cabeca", skin);
     }
+	
+	public void OnDeath()
+	{
+		sRender.enabled = false;
+	}
 }

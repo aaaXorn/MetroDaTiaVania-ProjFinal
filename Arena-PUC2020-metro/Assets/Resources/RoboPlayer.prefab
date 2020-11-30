@@ -608,6 +608,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PAtk: {fileID: 6381860983687510657}
+  PC: {fileID: 5386877055686279980}
   MainCamera: {fileID: 0}
   VirtualCamera: {fileID: 0}
   Tasks: {fileID: 0}
@@ -623,6 +624,7 @@ MonoBehaviour:
   health: 5
   maxHealth: 5
   alive: 1
+  mayMove: 1
   mayAttack: 1
   mayBeAttacked: 0
   role: 

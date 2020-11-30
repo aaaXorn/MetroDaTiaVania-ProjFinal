@@ -15,6 +15,8 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 	[SerializeField]
 	PlayerAttacks PAtk;
 	[SerializeField]
+	PlayerCabeca PC;
+	[SerializeField]
 	GameObject MainCamera, VirtualCamera, Tasks, RoleSet, HealthRTr, Inventario;
 	[SerializeField]
 	PlayerCameraScript PCS;
@@ -160,6 +162,10 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 				{
 					Movement();
 				}
+				else
+				{
+					rb2D.velocity = new Vector2(0, 0);
+				}
 			}
 		}
 	}
@@ -288,6 +294,7 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 		anim.SetBool("Morto", true);
 		alive = false;
 		bc2D.enabled = false;
+		PC.OnDeath();
 	}
 	
 	//funcoes de colisao e trigger
@@ -326,20 +333,25 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 			TS.task = true;
 			TS.currentTask = "gas1";
 		}
-		if (collision.gameObject.tag == "TG2")
+		else if (collision.gameObject.tag == "TG2")
 		{
 			TS.task = true;
 			TS.currentTask = "gas2";
 		}
-		if(collision.gameObject.tag == "TC1")
+		else if(collision.gameObject.tag == "TC1")
 		{
 			TS.task = true;
 			TS.currentTask = "chupeta1";
 		}
-		if(collision.gameObject.tag == "TC2")
+		else if(collision.gameObject.tag == "TC2")
 		{
 			TS.task = true;
 			TS.currentTask = "chupeta2";
+		}
+		else if(collision.gameObject.tag == "TEo")
+		{
+			TS.task = true;
+			TS.currentTask = "eolica";
 		}
 	}
 	

@@ -18,6 +18,7 @@ TagManager:
   - Dano2
   - Canvas
   - Vidas
+  - TEo
   layers:
   - Default
   - TransparentFX
