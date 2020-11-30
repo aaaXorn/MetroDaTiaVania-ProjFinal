@@ -19,6 +19,9 @@ TagManager:
   - Canvas
   - Vidas
   - TEo
+  - Grana
+  - Loja
+  - Cano
   layers:
   - Default
   - TransparentFX

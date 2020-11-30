@@ -17,7 +17,7 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 	[SerializeField]
 	PlayerCabeca PC;
 	[SerializeField]
-	GameObject MainCamera, VirtualCamera, Tasks, RoleSet, HealthRTr, Inventario;
+	GameObject MainCamera, VirtualCamera, Tasks, RoleSet, HealthRTr, Inventario, GranaText;
 	[SerializeField]
 	PlayerCameraScript PCS;
 	[SerializeField]
@@ -30,6 +30,8 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 	HealthScript HS;
 	[SerializeField]
 	InventarioScript IS;
+	[SerializeField]
+	DisplayGrana DG;
 	
 	public int health = 5;
 	public int maxHealth = 5;
@@ -91,6 +93,12 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 			IS.Player = gameObject;
 			IS.PA = IS.Player.GetComponent<PlayerAmong>();
 			IS.PAtk = PAtk;
+			
+			GranaText = GameObject.FindWithTag("Grana");
+			DG = GranaText.GetComponent<DisplayGrana>();
+			
+			DG.Player = gameObject;
+			DG.PA = DG.Player.GetComponent<PlayerAmong>();
 			
 			MainCamera = GameObject.FindWithTag("MainCamera");//necessario ja que o jogador e criado com Instantiate
 			VirtualCamera = GameObject.FindWithTag("VirtualCamera");
@@ -309,6 +317,12 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 			{
 				AtivaTasks(collision);
 			}
+			
+			if(collision.gameObject.tag == "Loja")
+			{
+				TS.task = true;
+				TS.currentTask = "loja";
+			}
 		}
 	}
 	
@@ -352,6 +366,11 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 		{
 			TS.task = true;
 			TS.currentTask = "eolica";
+		}
+		else if(collision.gameObject.tag == "Cano")
+		{
+			TS.task = true;
+			TS.currentTask = "canos";
 		}
 	}
 	

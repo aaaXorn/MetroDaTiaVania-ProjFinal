@@ -615,12 +615,14 @@ MonoBehaviour:
   RoleSet: {fileID: 0}
   HealthRTr: {fileID: 0}
   Inventario: {fileID: 0}
+  GranaText: {fileID: 0}
   PCS: {fileID: 0}
   VCS: {fileID: 0}
   TS: {fileID: 0}
   RS: {fileID: 0}
   HS: {fileID: 0}
   IS: {fileID: 0}
+  DG: {fileID: 0}
   health: 5
   maxHealth: 5
   alive: 1
