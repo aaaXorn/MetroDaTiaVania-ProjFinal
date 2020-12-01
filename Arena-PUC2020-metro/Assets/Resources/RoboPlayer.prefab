@@ -235,6 +235,10 @@ MonoBehaviour:
   Ataque: {fileID: 0}
   swordPrefab: {fileID: 1785671862604655513, guid: a31538c6e2b55b04e9ae1f3d4d753d61,
     type: 3}
+  taserPrefab: {fileID: 6389906006196876596, guid: cc20fca9ac6832348830c410f310e241,
+    type: 3}
+  imaPrefab: {fileID: 7899322739181595541, guid: 23901e77f078fae4d91ac204a1d9bb94,
+    type: 3}
   RoboPlayer: {fileID: 0}
   PA: {fileID: 0}
   armaUsada: 1
@@ -645,11 +649,16 @@ MonoBehaviour:
   inputY: 0
   movementX: 0
   movementY: 0
+  multiplier: 1
+  multiplierTotal: 1
   shoot: 0
   cursorDistance: {x: 0, y: 0, z: 0}
   cursorMagnitude: 0
   directionZ: 0
   attackDirection: {x: 0, y: 0}
+  paralyze: 0
+  paraTimer: 2
+  slowTimer: 3
 --- !u!95 &6381860985050223379
 Animator:
   serializedVersion: 3

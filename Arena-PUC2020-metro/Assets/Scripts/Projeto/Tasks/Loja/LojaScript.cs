@@ -5,13 +5,15 @@ using UnityEngine;
 public class LojaScript : MonoBehaviour
 {
 	[SerializeField]
-	GameObject Tasks, Vidas, Inventario, Espada;
+	GameObject Tasks, Vidas, Inventario, Espada, Taser, Ima;
 	[SerializeField]
 	TasksScript TS;
 	[SerializeField]
 	HealthScript HS;
 	
 	int repairHeal;
+	
+	bool bateriaBuy;
 	
 	[SerializeField]
 	InventarioScript IS;
@@ -40,6 +42,33 @@ public class LojaScript : MonoBehaviour
 		{
 			TS.PA.money -= 100;
 			IS.SetItem(Espada, 2);
+		}
+	}
+	
+	public void Choquinho()
+	{
+		if(TS.PA.money>=150)
+		{
+			TS.PA.money -= 150;
+			IS.SetItem(Taser, 3);
+		}
+	}
+	
+	public void ImaSlow()
+	{
+		if(TS.PA.money>=200)
+		{
+			TS.PA.money -= 200;
+			IS.SetItem(Ima, 4);
+		}
+	}
+	
+	public void Bateria()
+	{
+		if(TS.PA.money>=200 && bateriaBuy == false)
+		{
+			TS.PA.money -= 200;
+			TS.PA.multiplierTotal = 1.2f;
 		}
 	}
 	

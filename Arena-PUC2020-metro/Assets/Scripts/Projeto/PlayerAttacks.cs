@@ -11,7 +11,7 @@ public class PlayerAttacks : MonoBehaviour
 	SpriteRenderer sRender;
 	
 	[SerializeField]
-	GameObject bulletPrefab, Ataque, swordPrefab;
+	GameObject bulletPrefab, Ataque, swordPrefab, taserPrefab, imaPrefab;
 	[SerializeField]
 	GameObject RoboPlayer;
 	[SerializeField]
@@ -113,6 +113,14 @@ public class PlayerAttacks : MonoBehaviour
 			pView.RPC("RPC_Sword", RpcTarget.All);
 			break;
 			
+			case 3:
+			pView.RPC("RPC_Taser", RpcTarget.All);
+			break;
+			
+			case 4:
+			pView.RPC("RPC_Ima", RpcTarget.All);
+			break;
+			
 			default:
 			break;
 		}
@@ -149,6 +157,21 @@ public class PlayerAttacks : MonoBehaviour
 		Ataque = Instantiate(swordPrefab, transform.position, Quaternion.Euler(0, 0, PA.directionZ));
 		Ataque.transform.parent = gameObject.transform;
 		Ataque.transform.Translate(-4.65f, 0, 0);
+	}
+	
+	[PunRPC]
+	void RPC_Taser()
+	{
+		Ataque = Instantiate(taserPrefab, transform.position, Quaternion.Euler(0, 0, PA.directionZ));
+		Ataque.transform.parent = gameObject.transform;
+		Ataque.transform.Translate(-3.75f, 0, 0);
+	}
+	
+	[PunRPC]
+	void RPC_Ima()
+	{
+		Ataque = Instantiate(imaPrefab, transform.position, Quaternion.Euler(0, 0, PA.directionZ));
+		Ataque.transform.Translate(-3.35f, 0, 0);
 	}
 	
 	[PunRPC]

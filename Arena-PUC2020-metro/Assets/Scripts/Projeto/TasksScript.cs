@@ -139,13 +139,16 @@ public class TasksScript : MonoBehaviour
 						break;
 					}
 				}
-				
-				if(Input.GetKeyDown(KeyCode.T))
+				else
 				{
-					taskCreated = false;
-					task = false;
-					PA.mayMove = true;
-					PA.mayAttack = true;
+					if(Input.GetKeyDown(KeyCode.T))
+					{
+						taskCreated = false;
+						task = false;
+						if(PA.paralyze == false)
+							PA.mayMove = true;
+						PA.mayAttack = true;
+					}
 				}
 			}
 			else

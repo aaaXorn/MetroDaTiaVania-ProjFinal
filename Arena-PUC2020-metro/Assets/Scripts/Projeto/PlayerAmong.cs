@@ -56,12 +56,18 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 	float speedX = 7, speedY = 7, speedD = 4.9f;//velocidade horizontal/vertical/diagonal base, speedD = 0.7x speed
 	[SerializeField]
 	float movementX, movementY;//velocidade usada
+	public float multiplier = 1;//multiplier da velocidade
+	public float multiplierTotal = 1;
 	
 	public bool shoot = false;
 	public Vector3 cursorDistance;//distancia entre o player e a posicao do cursor
 	public float cursorMagnitude;//tamanho do vetor cursorDistance, usado em calculos
 	public float directionZ;//direcao da reta entre o player e a posicao do cursor
 	public Vector2 attackDirection;//direcao que o ataque ganha velocidade
+	
+	public bool paralyze;
+	[SerializeField]
+	float paraTimer = 2, slowTimer = 3;
     // Start is called before the first frame update
     void Start()
     {
@@ -174,6 +180,16 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 				{
 					rb2D.velocity = new Vector2(0, 0);
 				}
+				
+				if(multiplier != multiplierTotal)
+				{
+					Slowed();
+				}
+				
+				if(paralyze)
+				{
+					Paralyzed();
+				}
 			}
 		}
 	}
@@ -221,14 +237,14 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 		if(inputX != 0 && inputY == 0  || inputX == 0 && inputY != 0)//movimento so pelo X ou so pelo Y
 		{
 			pView.RPC("RPC_animMoverTrue", RpcTarget.All);
-			movementX = inputX * speedX;
-			movementY = inputY * speedY;
+			movementX = inputX * speedX * multiplier;
+			movementY = inputY * speedY * multiplier;
 		}
 		else if (inputX != 0 && inputY != 0)//movimento na diagonal
 		{
 			pView.RPC("RPC_animMoverTrue", RpcTarget.All);
-			movementX = inputX * speedD;
-			movementY = inputY * speedD;
+			movementX = inputX * speedD * multiplier;
+			movementY = inputY * speedD * multiplier;
 		}
 		else if (inputX == 0 && inputY == 0)//parado
 		{
@@ -381,9 +397,47 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 			HS.Dano(1);
 		}
 		
-		if(collision.gameObject.tag == "Dano2")
+		else if(collision.gameObject.tag == "Dano2")
 		{
 			HS.Dano(2);
+		}
+		
+		else if(collision.gameObject.tag == "Para")
+		{
+			paralyze = true;
+		}
+		
+		else if(collision.gameObject.tag == "Lentidao")
+		{
+			multiplier = 0.6f;
+		}
+	}
+	
+	void Slowed()
+	{
+		if(slowTimer>0)
+		{
+			slowTimer -= Time.deltaTime;
+		}
+		else
+		{
+			multiplier = multiplierTotal;
+			slowTimer = 3;
+		}
+	}
+	
+	void Paralyzed()
+	{
+		if(paraTimer>0)
+		{
+			paraTimer -= Time.deltaTime;
+			mayMove = false;
+		}
+		else
+		{
+			paralyze = false;
+			mayMove = true;
+			paraTimer = 2;
 		}
 	}
 }
