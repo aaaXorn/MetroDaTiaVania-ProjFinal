@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c78e3fec424d91498fd3defc1d2a35b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerRender: {fileID: 6381860985050223390}
   RoleSet: {fileID: 0}
   RS: {fileID: 0}
   skin: 1

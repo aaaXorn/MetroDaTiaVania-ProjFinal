@@ -5,9 +5,13 @@ using UnityEngine;
 public class LojaScript : MonoBehaviour
 {
 	[SerializeField]
-	GameObject Tasks, Inventario, Espada;
+	GameObject Tasks, Vidas, Inventario, Espada;
 	[SerializeField]
 	TasksScript TS;
+	[SerializeField]
+	HealthScript HS;
+	
+	int repairHeal;
 	
 	[SerializeField]
 	InventarioScript IS;
@@ -16,6 +20,9 @@ public class LojaScript : MonoBehaviour
     {
         Tasks = GameObject.FindWithTag("Tasks");
 		TS = Tasks.GetComponent<TasksScript>();
+		
+		Vidas = GameObject.FindWithTag("Vidas");
+		HS = Vidas.GetComponent<HealthScript>();
 		
 		Inventario = GameObject.FindWithTag("Inventario");
 		IS = Inventario.GetComponent<InventarioScript>();
@@ -41,6 +48,13 @@ public class LojaScript : MonoBehaviour
 		if(TS.PA.health>0 && TS.PA.money>=250)
 		{
 			TS.PA.money -= 250;
+			
+			repairHeal = TS.PA.maxHealth - TS.PA.health;
+			for(int i=0; i<repairHeal; i++)
+			{
+				HS.Heal();
+			}
+			
 			TS.PA.health = TS.PA.maxHealth;
 		}
 	}

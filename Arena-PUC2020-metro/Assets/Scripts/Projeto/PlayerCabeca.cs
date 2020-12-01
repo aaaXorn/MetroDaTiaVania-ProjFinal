@@ -9,6 +9,8 @@ public class PlayerCabeca : MonoBehaviour//PunCallbacks, IPunObservable
 	SpriteRenderer sRender;
 	PhotonView pView;
 	
+	public SpriteRenderer playerRender;
+	
 	[SerializeField]
 	GameObject RoleSet;
 	[SerializeField]
@@ -54,6 +56,7 @@ public class PlayerCabeca : MonoBehaviour//PunCallbacks, IPunObservable
     {
 		if(pView.IsMine)
 			anim.SetInteger("cabeca", skin);
+		sRender.flipX = playerRender.flipX;
     }
 	
 	public void OnDeath()
