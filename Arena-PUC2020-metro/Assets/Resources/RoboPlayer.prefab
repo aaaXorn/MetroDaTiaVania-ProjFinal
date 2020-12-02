@@ -247,6 +247,7 @@ MonoBehaviour:
   arma3: 0
   arma4: 0
   arma5: 0
+  MovimentoArma: {x: 0, y: 0}
 --- !u!114 &4656383808610465338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -645,6 +646,7 @@ MonoBehaviour:
   roleOK: 0
   skinOK: 0
   money: 0
+  Movimento: {x: 0, y: 0}
   inputX: 0
   inputY: 0
   movementX: 0

@@ -24,6 +24,9 @@ TagManager:
   - Cano
   - Para
   - Lentidao
+  - Teleporte
+  - Teleport0
+  - TF
   layers:
   - Default
   - TransparentFX

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ImaScript : MonoBehaviour
 {
-	float timer = 0.1f;
+	float timer = 1;
 	
     // Start is called before the first frame update
     void Start()

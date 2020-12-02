@@ -83,6 +83,11 @@ MonoBehaviour:
   - RPC_Sword
   - RPC_Taser
   - RPC_Ima
+  - Teleporte1
+  - Teleporte2
+  - RPC_Teleporte1
+  - RPC_Teleporte2
+  - RPC_teleportaPlayer
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

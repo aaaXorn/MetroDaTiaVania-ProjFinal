@@ -26,6 +26,8 @@ public class PlayerAttacks : MonoBehaviour
 	public int arma1, arma2, arma3, arma4, arma5;
 	
 	float bulletSpeed = 11;
+	[SerializeField]
+	Vector2 MovimentoArma;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +46,8 @@ public class PlayerAttacks : MonoBehaviour
 		{
 			pView.RPC("RPC_Rotation", RpcTarget.All);
 			anim.SetInteger("ArmaUsada", armaUsada);
+			
+			MovimentoArma = PA.Movimento;
 			
 			if(PA.mayAttack && attackStart == false)
 			{
@@ -155,16 +159,16 @@ public class PlayerAttacks : MonoBehaviour
 	void RPC_Sword()
 	{
 		Ataque = Instantiate(swordPrefab, transform.position, Quaternion.Euler(0, 0, PA.directionZ));
-		Ataque.transform.parent = gameObject.transform;
 		Ataque.transform.Translate(-4.65f, 0, 0);
+		Ataque.GetComponent<Rigidbody2D>().velocity = MovimentoArma;
 	}
 	
 	[PunRPC]
 	void RPC_Taser()
 	{
 		Ataque = Instantiate(taserPrefab, transform.position, Quaternion.Euler(0, 0, PA.directionZ));
-		Ataque.transform.parent = gameObject.transform;
 		Ataque.transform.Translate(-3.75f, 0, 0);
+		Ataque.GetComponent<Rigidbody2D>().velocity = MovimentoArma;
 	}
 	
 	[PunRPC]
@@ -172,6 +176,7 @@ public class PlayerAttacks : MonoBehaviour
 	{
 		Ataque = Instantiate(imaPrefab, transform.position, Quaternion.Euler(0, 0, PA.directionZ));
 		Ataque.transform.Translate(-3.35f, 0, 0);
+		Ataque.GetComponent<Rigidbody2D>().velocity = MovimentoArma;
 	}
 	
 	[PunRPC]

@@ -11,6 +11,8 @@ public class RoleScript : MonoBehaviour
 	
 	public GameObject Player;
 	public PlayerAmong PA;
+	[SerializeField]
+	Animator WLanim;
 	
 	public GameObject Cabeca;
 	public PlayerCabeca PC;
@@ -36,6 +38,9 @@ public class RoleScript : MonoBehaviour
 	public bool start;
 	float startTimer = 6;
 	
+	float endTimer = 5;
+	bool fim;
+	
     // Start is called before the first frame update
     void Start()
     {
@@ -60,12 +65,30 @@ public class RoleScript : MonoBehaviour
 		
 		if(inocenAlive<=0)
 		{
-			SceneManager.LoadScene("Level3");
+			endTimer -= Time.deltaTime;
+			if(PA.role == "inocente")
+				WLanim.SetTrigger("lose");
+			if(fim == false)
+			{
+				pView.RPC("RPC_teleportaPlayer", RpcTarget.All);
+				fim = true;
+			}
+			if(endTimer<=0)
+				SceneManager.LoadScene("Level3");
 		}
 		
 		if(sabotaAlive<=0)
 		{
-			SceneManager.LoadScene("Level3");
+			endTimer -= Time.deltaTime;
+			if(PA.role == "sabotador")
+				WLanim.SetTrigger("lose");
+			if(fim == false)
+			{
+				pView.RPC("RPC_teleportaPlayer", RpcTarget.All);
+				fim = true;
+			}
+			if(endTimer<=0)
+				SceneManager.LoadScene("Level3");
 		}
 		
 		if(players>5)
@@ -291,5 +314,11 @@ public class RoleScript : MonoBehaviour
 	void RPC_numeroSabotaMais()
 	{
 		numeroSabota++;
+	}
+	
+	[PunRPC]
+	void RPC_teleportaPlayer()
+	{
+		Player.transform.position = new Vector2(0 + Random.Range(-14, 14), -62 + Random.Range(-8, 1));//40, 14
 	}
 }

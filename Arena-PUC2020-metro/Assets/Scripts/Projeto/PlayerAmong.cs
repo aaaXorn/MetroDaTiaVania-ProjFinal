@@ -51,6 +51,7 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 	
 	public int money = 0;
 	
+	public Vector2 Movimento;
 	[SerializeField]
 	float inputX, inputY;//valor dos inputs, mudam de acordo com o input horizontal/vertical
 	float speedX = 7, speedY = 7, speedD = 4.9f;//velocidade horizontal/vertical/diagonal base, speedD = 0.7x speed
@@ -178,8 +179,10 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 				}
 				else
 				{
-					rb2D.velocity = new Vector2(0, 0);
+					Movimento = new Vector2(0, 0);
 				}
+				
+				rb2D.velocity = Movimento;
 				
 				if(multiplier != multiplierTotal)
 				{
@@ -253,7 +256,7 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 			movementY = 0;
 		}
 		
-		rb2D.velocity = new Vector2(movementX, movementY);
+		Movimento = new Vector2(movementX, movementY);
 	}
 	
 	void MouseVariables()
@@ -339,6 +342,8 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 				TS.task = true;
 				TS.currentTask = "loja";
 			}
+			
+			Teleport(collision);
 		}
 	}
 	
@@ -387,6 +392,11 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 		{
 			TS.task = true;
 			TS.currentTask = "canos";
+		}
+		else if(collision.gameObject.tag == "TF")
+		{
+			TS.task = true;
+			TS.currentTask = "fios";
 		}
 	}
 	
@@ -439,5 +449,24 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 			mayMove = true;
 			paraTimer = 2;
 		}
+	}
+	
+	void Teleport(Collider2D collision)
+	{
+		if(collision.gameObject.tag == "Teleporte")
+			pView.RPC("RPC_Teleporte1", RpcTarget.All);
+		else if(collision.gameObject.tag == "Teleport0")
+			pView.RPC("RPC_Teleporte2", RpcTarget.All);
+	}
+	
+	[PunRPC]
+	void RPC_Teleporte1()
+	{
+		transform.position = new Vector2(131, -81);
+	}
+	[PunRPC]
+	void RPC_Teleporte2()
+	{
+		transform.position = new Vector2(118, 3.2f);
 	}
 }
