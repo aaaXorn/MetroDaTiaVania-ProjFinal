@@ -239,6 +239,8 @@ MonoBehaviour:
     type: 3}
   imaPrefab: {fileID: 7899322739181595541, guid: 23901e77f078fae4d91ac204a1d9bb94,
     type: 3}
+  shieldPrefab: {fileID: 6506598480074826006, guid: 76472aa0a2ed859458770af4cfd7f890,
+    type: 3}
   RoboPlayer: {fileID: 0}
   PA: {fileID: 0}
   armaUsada: 1

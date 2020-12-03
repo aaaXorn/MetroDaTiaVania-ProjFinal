@@ -11,7 +11,7 @@ public class PlayerAttacks : MonoBehaviour
 	SpriteRenderer sRender;
 	
 	[SerializeField]
-	GameObject bulletPrefab, Ataque, swordPrefab, taserPrefab, imaPrefab;
+	GameObject bulletPrefab, Ataque, swordPrefab, taserPrefab, imaPrefab, shieldPrefab;
 	[SerializeField]
 	GameObject RoboPlayer;
 	[SerializeField]
@@ -20,6 +20,9 @@ public class PlayerAttacks : MonoBehaviour
 	float attackTimer = 0.1f;
 	bool attackStart = false;
 	float attackCD = 1;
+	
+	bool shieldUse;
+	float shieldCD = 7;
 	
 	[SerializeField]
 	int armaUsada = 1;
@@ -93,6 +96,16 @@ public class PlayerAttacks : MonoBehaviour
 				armaUsada = arma4;
 			else if(Input.GetKeyDown(KeyCode.Alpha5))
 				armaUsada = arma5;
+				
+			if(shieldUse)
+			{
+				shieldCD -= Time.deltaTime;
+				if(shieldCD<=0)
+				{
+					shieldUse = false;
+					shieldCD = 6;
+				}
+			}
 		}
 		else if(PA.alive == false)
 			pView.RPC("RPC_SpriteDisable", RpcTarget.All);
@@ -123,6 +136,14 @@ public class PlayerAttacks : MonoBehaviour
 			
 			case 4:
 			pView.RPC("RPC_Ima", RpcTarget.All);
+			break;
+			
+			case -1:
+			if(shieldUse == false)
+			{
+				shieldUse = true;
+				pView.RPC("RPC_Shield", RpcTarget.All);
+			}
 			break;
 			
 			default:
@@ -176,6 +197,13 @@ public class PlayerAttacks : MonoBehaviour
 	{
 		Ataque = Instantiate(imaPrefab, transform.position, Quaternion.Euler(0, 0, PA.directionZ));
 		Ataque.transform.Translate(-3.35f, 0, 0);
+		Ataque.GetComponent<Rigidbody2D>().velocity = MovimentoArma;
+	}
+	
+	[PunRPC]
+	void RPC_Shield()
+	{
+		Ataque = Instantiate(shieldPrefab, transform.position, Quaternion.identity);
 		Ataque.GetComponent<Rigidbody2D>().velocity = MovimentoArma;
 	}
 	
