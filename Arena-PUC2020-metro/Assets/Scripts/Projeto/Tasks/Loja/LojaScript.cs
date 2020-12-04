@@ -5,7 +5,7 @@ using UnityEngine;
 public class LojaScript : MonoBehaviour
 {
 	[SerializeField]
-	GameObject Tasks, Vidas, Inventario, Espada, Taser, Ima;
+	GameObject Tasks, Vidas, Inventario, Espada, Taser, Ima, Shield, Martelo, Cura;
 	[SerializeField]
 	TasksScript TS;
 	[SerializeField]
@@ -45,6 +45,15 @@ public class LojaScript : MonoBehaviour
 		}
 	}
 	
+	public void Hammer()
+	{
+		if(TS.PA.money>=100)
+		{
+			TS.PA.money -= 100;
+			IS.SetItem(Martelo, 5);
+		}
+	}
+	
 	public void Choquinho()
 	{
 		if(TS.PA.money>=150)
@@ -56,10 +65,19 @@ public class LojaScript : MonoBehaviour
 	
 	public void ImaSlow()
 	{
+		if(TS.PA.money>=150)
+		{
+			TS.PA.money -= 150;
+			IS.SetItem(Ima, 4);
+		}
+	}
+	
+	public void Escudo()
+	{
 		if(TS.PA.money>=200)
 		{
 			TS.PA.money -= 200;
-			IS.SetItem(Ima, 4);
+			IS.SetItem(Shield, -1);
 		}
 	}
 	
@@ -69,6 +87,15 @@ public class LojaScript : MonoBehaviour
 		{
 			TS.PA.money -= 200;
 			TS.PA.multiplierTotal = 1.2f;
+		}
+	}
+	
+	public void Medkit()
+	{
+		if(TS.PA.money>=75)
+		{
+			TS.PA.money -= 75;
+			IS.SetItem(Cura, -2);
 		}
 	}
 	

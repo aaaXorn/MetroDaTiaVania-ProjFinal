@@ -23,6 +23,8 @@ public class TasksScript : MonoBehaviour
 	
 	public bool tHanoiDone, tGas1Done, tGas2Done, tChu1Done, tChu2Done, tEolicaDone,
 	tCanoDone, tFiosDone;
+	int tasksFeitas;
+	bool todasDone;
 	//pras tasks feitas nao poderem ser feitas 2 vezes
     // Start is called before the first frame update
     void Start()
@@ -41,7 +43,7 @@ public class TasksScript : MonoBehaviour
 				{
 					switch(currentTask)
 					{
-						case "hanoi":
+						/*case "hanoi":
 						if(tHanoiDone == false)
 						{
 							TaskUsed = Instantiate(TaskHanoi, transform.position, Quaternion.identity);
@@ -54,7 +56,7 @@ public class TasksScript : MonoBehaviour
 						}
 						else
 							task = false;
-						break;
+						break;*/
 						
 						case "gas1":
 						if(tGas1Done == false)
@@ -167,12 +169,19 @@ public class TasksScript : MonoBehaviour
 				Destroy(TaskUsed);
 				taskCreated = false;
 			}
+			
+			if(tasksFeitas>=7 && todasDone == false)
+			{
+				PA.money += 50;
+				todasDone = true;
+			}
 		//}
     }
 	
 	public void TaskMoney()
 	{
-		PA.money += 100;
+		tasksFeitas++;
+		PA.money += 50;
 		PA.mayMove = true;
 		PA.mayAttack = true;
 	}

@@ -89,6 +89,8 @@ MonoBehaviour:
   - RPC_Teleporte2
   - RPC_teleportaPlayer
   - RPC_Shield
+  - RPC_SegueOPlayer
+  - RPC_Martelo
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

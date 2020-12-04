@@ -26,8 +26,7 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 	TasksScript TS;
 	[SerializeField]
 	RoleScript RS;
-	[SerializeField]
-	HealthScript HS;
+	public HealthScript HS;
 	[SerializeField]
 	InventarioScript IS;
 	[SerializeField]

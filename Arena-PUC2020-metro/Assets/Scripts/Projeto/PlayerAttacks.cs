@@ -11,7 +11,7 @@ public class PlayerAttacks : MonoBehaviour
 	SpriteRenderer sRender;
 	
 	[SerializeField]
-	GameObject bulletPrefab, Ataque, swordPrefab, taserPrefab, imaPrefab, shieldPrefab;
+	GameObject bulletPrefab, Ataque, swordPrefab, taserPrefab, imaPrefab, shieldPrefab, marteloPrefab;
 	[SerializeField]
 	GameObject RoboPlayer;
 	[SerializeField]
@@ -20,6 +20,8 @@ public class PlayerAttacks : MonoBehaviour
 	float attackTimer = 0.1f;
 	bool attackStart = false;
 	float attackCD = 1;
+	bool marteloAttack;
+	float attackWindUp = 1;
 	
 	bool shieldUse;
 	float shieldCD = 7;
@@ -27,6 +29,8 @@ public class PlayerAttacks : MonoBehaviour
 	[SerializeField]
 	int armaUsada = 1;
 	public int arma1, arma2, arma3, arma4, arma5;
+	
+	bool seguePlayer;
 	
 	float bulletSpeed = 11;
 	[SerializeField]
@@ -64,11 +68,9 @@ public class PlayerAttacks : MonoBehaviour
 				{
 					if(attackTimer<=0)
 					{
-						anim.SetTrigger("Pew");
 						Ataques();
 						attackTimer = 0.1f;
 						PA.shoot = false;
-						attackStart = true;
 					}
 					else
 					{
@@ -96,7 +98,20 @@ public class PlayerAttacks : MonoBehaviour
 				armaUsada = arma4;
 			else if(Input.GetKeyDown(KeyCode.Alpha5))
 				armaUsada = arma5;
-				
+			
+			if(marteloAttack)
+			{
+				attackWindUp -= Time.deltaTime;
+				if(attackWindUp<=0)
+				{
+					anim.SetTrigger("Pew");
+					attackStart = true;
+					pView.RPC("RPC_Martelo", RpcTarget.All);
+					attackWindUp = 1;
+					marteloAttack = false;
+				}
+			}
+			
 			if(shieldUse)
 			{
 				shieldCD -= Time.deltaTime;
@@ -106,6 +121,9 @@ public class PlayerAttacks : MonoBehaviour
 					shieldCD = 6;
 				}
 			}
+			
+			if(seguePlayer)
+				pView.RPC("RPC_SegueOPlayer", RpcTarget.All);
 		}
 		else if(PA.alive == false)
 			pView.RPC("RPC_SpriteDisable", RpcTarget.All);
@@ -123,26 +141,48 @@ public class PlayerAttacks : MonoBehaviour
 		switch(armaUsada)
 		{
 			case 1:
+			attackStart = true;
+			anim.SetTrigger("Pew");
 			pView.RPC("RPC_Shoot", RpcTarget.All);
 			break;
 				
 			case 2:
+			attackStart = true;
+			anim.SetTrigger("Pew");
 			pView.RPC("RPC_Sword", RpcTarget.All);
 			break;
 			
 			case 3:
+			attackStart = true;
+			anim.SetTrigger("Pew");
 			pView.RPC("RPC_Taser", RpcTarget.All);
 			break;
 			
 			case 4:
+			attackStart = true;
+			anim.SetTrigger("Pew");
 			pView.RPC("RPC_Ima", RpcTarget.All);
 			break;
 			
+			case 5:
+			marteloAttack = true;
+			break;
+			
 			case -1:
+			attackStart = true;
 			if(shieldUse == false)
 			{
 				shieldUse = true;
 				pView.RPC("RPC_Shield", RpcTarget.All);
+			}
+			break;
+			
+			case -2:
+			if(PA.health<PA.maxHealth && PA.money>=90)
+			{
+				PA.money -= 90;
+				PA.HS.Heal();
+				PA.health++;
 			}
 			break;
 			
@@ -171,6 +211,7 @@ public class PlayerAttacks : MonoBehaviour
 	{
 		//Ataque = PhotonNetwork.Instantiate("bullet0", transform.position, Quaternion.Euler(0, 0, PA.directionZ));
 		//versao com PhotonNetwork, causou bugs entao nao esta sendo usada
+		seguePlayer = false;
 		Ataque = Instantiate(bulletPrefab, transform.position, Quaternion.Euler(0, 0, PA.directionZ));
 		Ataque.transform.Translate(-3.35f, 0, 0);//para o tiro não spawnar dentro do player, negativo pra ir pro lado certo
 		Ataque.GetComponent<Rigidbody2D>().velocity = PA.attackDirection * bulletSpeed;
@@ -179,37 +220,51 @@ public class PlayerAttacks : MonoBehaviour
 	[PunRPC]
 	void RPC_Sword()
 	{
+		seguePlayer = true;
 		Ataque = Instantiate(swordPrefab, transform.position, Quaternion.Euler(0, 0, PA.directionZ));
 		Ataque.transform.Translate(-4.65f, 0, 0);
-		Ataque.GetComponent<Rigidbody2D>().velocity = MovimentoArma;
 	}
 	
 	[PunRPC]
 	void RPC_Taser()
 	{
+		seguePlayer = true;
 		Ataque = Instantiate(taserPrefab, transform.position, Quaternion.Euler(0, 0, PA.directionZ));
 		Ataque.transform.Translate(-3.75f, 0, 0);
-		Ataque.GetComponent<Rigidbody2D>().velocity = MovimentoArma;
 	}
 	
 	[PunRPC]
 	void RPC_Ima()
 	{
+		seguePlayer = true;
 		Ataque = Instantiate(imaPrefab, transform.position, Quaternion.Euler(0, 0, PA.directionZ));
 		Ataque.transform.Translate(-3.35f, 0, 0);
-		Ataque.GetComponent<Rigidbody2D>().velocity = MovimentoArma;
+	}
+	
+	[PunRPC]
+	void RPC_Martelo()
+	{
+		seguePlayer = true;
+		Ataque = Instantiate(marteloPrefab, transform.position, Quaternion.Euler(0, 0, PA.directionZ));
+		Ataque.transform.Translate(-6.65f, 0, 0);
 	}
 	
 	[PunRPC]
 	void RPC_Shield()
 	{
+		seguePlayer = true;
 		Ataque = Instantiate(shieldPrefab, transform.position, Quaternion.identity);
-		Ataque.GetComponent<Rigidbody2D>().velocity = MovimentoArma;
 	}
 	
 	[PunRPC]
 	void RPC_SpriteDisable()
 	{
 		sRender.enabled = false;
+	}
+	
+	[PunRPC]
+	void RPC_SegueOPlayer()
+	{
+		Ataque.GetComponent<Rigidbody2D>().velocity = MovimentoArma;
 	}
 }

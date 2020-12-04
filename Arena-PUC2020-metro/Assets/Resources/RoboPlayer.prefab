@@ -241,6 +241,8 @@ MonoBehaviour:
     type: 3}
   shieldPrefab: {fileID: 6506598480074826006, guid: 76472aa0a2ed859458770af4cfd7f890,
     type: 3}
+  marteloPrefab: {fileID: 4261285878066659575, guid: 3ac1c4c9a6cf0a846be2a73050ea5a0f,
+    type: 3}
   RoboPlayer: {fileID: 0}
   PA: {fileID: 0}
   armaUsada: 1

@@ -2,13 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TesteInventario : MonoBehaviour
+public class marcaTFio : MonoBehaviour
 {
 	[SerializeField]
-	GameObject ItemTest;
-	
-	[SerializeField]
-	InventarioScript IS;
+	TasksScript TS;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,11 +15,7 @@ public class TesteInventario : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(TS.tFiosDone)
+			Destroy(gameObject);
     }
-	
-	public void Teste()
-	{
-		IS.SetItem(ItemTest, -2);
-	}
 }
