@@ -154,7 +154,7 @@ public class TasksScript : MonoBehaviour
 				}
 				else
 				{
-					if(Input.GetKeyDown(KeyCode.T))
+					if(Input.GetKeyDown(KeyCode.E))
 					{
 						taskCreated = false;
 						task = false;

@@ -153,7 +153,7 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 				}
 			}
 			
-			if(Input.GetKeyDown(KeyCode.Escape))
+			if(Input.GetKeyDown(KeyCode.P))
 			{
 				Application.Quit();
 			}
