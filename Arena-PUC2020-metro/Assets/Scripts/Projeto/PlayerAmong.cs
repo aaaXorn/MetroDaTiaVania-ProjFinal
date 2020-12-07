@@ -17,7 +17,7 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 	[SerializeField]
 	PlayerCabeca PC;
 	[SerializeField]
-	GameObject MainCamera, VirtualCamera, Tasks, RoleSet, HealthRTr, Inventario, GranaText;
+	GameObject MainCamera, VirtualCamera, Tasks, RoleSet, HealthRTr, Inventario, GranaText, Spectate, Morto;
 	[SerializeField]
 	PlayerCameraScript PCS;
 	[SerializeField]
@@ -142,13 +142,17 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 						RS.inocenMorre();
 					else if(role == "sabotador")
 						RS.sabotaMorre();
+					Movimento = new Vector2(0, 0);
 					pView.RPC("RPC_Death", RpcTarget.All);
+					Morto = Instantiate(Spectate, transform.position, Quaternion.identity);
+					VCS.CameraFollow(Morto);
 				}
 				else if(health>maxHealth)
 				{
 					health = maxHealth;
 				}
 			}
+			
 			if(Input.GetKeyDown(KeyCode.Escape))
 			{
 				Application.Quit();
@@ -285,7 +289,7 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 			case "sabotador":
 			Role = Instantiate(RoleSabotador, transform.position, Quaternion.identity);
 			Role.transform.parent = gameObject.transform;
-			money += 300;
+			money += 400;
 			break;
 		}
 	}

@@ -626,6 +626,8 @@ MonoBehaviour:
   HealthRTr: {fileID: 0}
   Inventario: {fileID: 0}
   GranaText: {fileID: 0}
+  Spectate: {fileID: 8298662774298320029, guid: f04a8077cedc3154da88a69c9ffc7057,
+    type: 3}
   PCS: {fileID: 0}
   VCS: {fileID: 0}
   TS: {fileID: 0}

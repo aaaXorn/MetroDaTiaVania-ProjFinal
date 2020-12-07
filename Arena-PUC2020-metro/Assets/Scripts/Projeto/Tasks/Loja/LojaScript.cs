@@ -56,9 +56,9 @@ public class LojaScript : MonoBehaviour
 	
 	public void Choquinho()
 	{
-		if(TS.PA.money>=150)
+		if(TS.PA.money>=100)
 		{
-			TS.PA.money -= 150;
+			TS.PA.money -= 100;
 			IS.SetItem(Taser, 3);
 		}
 	}

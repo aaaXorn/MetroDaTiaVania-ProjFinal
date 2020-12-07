@@ -172,7 +172,7 @@ public class TasksScript : MonoBehaviour
 			
 			if(tasksFeitas>=7 && todasDone == false)
 			{
-				PA.money += 50;
+				PA.money += 75;
 				todasDone = true;
 			}
 		//}
@@ -181,7 +181,7 @@ public class TasksScript : MonoBehaviour
 	public void TaskMoney()
 	{
 		tasksFeitas++;
-		PA.money += 50;
+		PA.money += 75;
 		PA.mayMove = true;
 		PA.mayAttack = true;
 	}
