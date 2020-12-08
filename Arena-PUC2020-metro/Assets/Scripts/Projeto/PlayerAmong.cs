@@ -465,11 +465,11 @@ public class PlayerAmong : MonoBehaviourPunCallbacks, IPunObservable
 	[PunRPC]
 	void RPC_Teleporte1()
 	{
-		transform.position = new Vector2(131, -81);
+		transform.position = new Vector2(142, -84.65f);
 	}
 	[PunRPC]
 	void RPC_Teleporte2()
 	{
-		transform.position = new Vector2(118, 3.2f);
+		transform.position = new Vector2(130, 1.36f);
 	}
 }
